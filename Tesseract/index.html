@@ -40,7 +40,42 @@
             <div class="main">
                 <div class="content">
                 
-                        
+                        <p>版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
+<h1 id="java解析页面验证码安装Tesseract"><a href="#java解析页面验证码安装Tesseract" class="headerlink" title="java解析页面验证码安装Tesseract"></a>java解析页面验证码安装Tesseract</h1><h2 id="1-安装Tesseract"><a href="#1-安装Tesseract" class="headerlink" title="1.安装Tesseract"></a>1.安装Tesseract</h2><p> Tesseract项目最初由惠普实验室支持，1996年被移植到Windows上，1998年进行了C++化。在2005年Tesseract由惠普公司宣布开源。2006年到现在，都由Google公司开发。</p>
+<p>目前，Tesseract的源代码放在GitHub上。<br> <a href="https://digi.bib.uni-mannheim.de/tesseract/" target="_blank" rel="noopener">tesseract下载地址</a>.</p>
+<p> 也可以直接从我网盘下载<br>链接：<a href="https://pan.baidu.com/s/1nM_ZqxVqrGfDahKH35qM2w" target="_blank" rel="noopener">https://pan.baidu.com/s/1nM_ZqxVqrGfDahKH35qM2w </a>.<br>提取码：vq3d </p>
+<ul>
+<li><p>进入下载页面，可以看到有各种.exe文件的下载列表，这里可以选择下载4.0版本。<img src="https://img-blog.csdnimg.cn/20191108100458476.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图"></p>
+</li>
+<li><p>下载到本地后双击，会出现以下安装界面<br><img src="https://img-blog.csdnimg.cn/2019110810145720.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>一路默认点击，如果需要其他语言，在这个页面勾选Additional language data(download)选项来安装OCR识别支持的语言包（用不着不用点）<br><img src="https://img-blog.csdnimg.cn/20191108101959972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>安装路径默认C:\Program Files (x86)\Tesseract-OCR<br>到这个页面我一般是勾选不需要创建快捷方式的，因为也不会主动点击去用<br><img src="https://img-blog.csdnimg.cn/20191108102118794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>OK 这个时候咱们就已经安装好了 现在需要配置一下本地环境变量，然后就可以用了</p>
+<h2 id="2-Windows下-Tesseract-OCR-的环境变量配置"><a href="#2-Windows下-Tesseract-OCR-的环境变量配置" class="headerlink" title="2.Windows下 Tesseract-OCR 的环境变量配置"></a>2.Windows下 Tesseract-OCR 的环境变量配置</h2></li>
+<li><p>打开环境变量配置<br><img src="https://img-blog.csdnimg.cn/20191108102655375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>找到用户变量和系统变量 两个[Path]项点开，都添加刚才拷贝的Tesseract 的安装路径（由于刚才是默认安装，默认路径就是【C:\Program Files (x86)\Tesseract-OCR】）<br><img src="https://img-blog.csdnimg.cn/20191108102958325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>在[系统变量]中，新建一个变量名称为：TESSDATA_PREFIX<br>值为：刚才路径加上 \tessdata<br><img src="https://img-blog.csdnimg.cn/20191108103108189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>OK 安装配置完成 现在开始测试一下</p>
+<h2 id="3-Tesseract-OCR-的文字识别测试"><a href="#3-Tesseract-OCR-的文字识别测试" class="headerlink" title="3.Tesseract-OCR 的文字识别测试"></a>3.Tesseract-OCR 的文字识别测试</h2></li>
+<li><p>咱们找个图片进行测试，最好图片放在一个比较好找的目录，我就直接放在了D盘了，路径为D:\test.jpg 这样的<br><img src="https://img-blog.csdnimg.cn/2019110810403979.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="*"></p>
+</li>
+<li><p>打开 cmd 进入该图片的文件夹<br>使用 cd 目录名 进入目录</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">d:</span><br><span class="line">cd test</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入： tesseract test.jpg demo –l eng<br><img src="https://img-blog.csdnimg.cn/20191108104315989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="4-运行结果"><a href="#4-运行结果" class="headerlink" title="4.运行结果"></a>4.运行结果</h2><img src="https://img-blog.csdnimg.cn/20191108104436512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h1 id="更多技术分享环境登录我的博客"><a href="#更多技术分享环境登录我的博客" class="headerlink" title="更多技术分享环境登录我的博客"></a>更多技术分享环境登录我的博客</h1><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></li>
+</ul>
+<hr>
+<ul>
+<li>本笔记不允许任何个人和组织转载</li>
+</ul>
+
                 
                 </div>
             </div>
