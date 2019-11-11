@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>“学习XML数据库（Marklogic）实战（2）” - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。本文链接：http://www.blbk.info
+学习XML数据库（Marklogic）实战,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">“学习XML数据库（Marklogic）实战（2）”</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">“学习XML数据库（Marklogic）实战（2）”</h1>
+        <div class="stuff">
+            <span>十一月 11, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Marklogic/" rel="tag">Marklogic</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>版权声明：本文为博主原创文章，遵循 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC 4.0 BY-SA</a> 版权协议，转载请附上原文出处链接和本声明。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
+<h1 id="学习XML数据库（Marklogic）实战（2）"><a href="#学习XML数据库（Marklogic）实战（2）" class="headerlink" title="学习XML数据库（Marklogic）实战（2）"></a>学习XML数据库（Marklogic）实战（2）</h1><h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>本人是需要解析Schema文档，然后对其进行数据操作，考虑采用Marklogic数据库测试，由于Marklogic数据库针对xml数据来做的数据库，所以个人建议要提前先了解一些xml相关的知识，这样有利于后期学习的理解与吸收。</p>
+<h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a><a href="https://www.runoob.com/xml/xml-tutorial.html" target="_blank" rel="noopener">XML</a></h2><h4 id="什么是-XML？"><a href="#什么是-XML？" class="headerlink" title="什么是 XML？"></a>什么是 XML？</h4><ul>
+<li>XML 指可扩展标记语言（EXtensible Markup Language）。</li>
+<li>XML 是一种很像HTML的标记语言。</li>
+<li>XML 的设计宗旨是传输数据，而不是显示数据。</li>
+<li>XML 标签没有被预定义。您需要自行定义标签。</li>
+<li>XML 被设计为具有自我描述性。</li>
+<li>XML 是 W3C 的推荐标准</li>
+<li>XML无所不在</li>
+<li>目前，XML 在 Web 中起到的作用不会亚于一直作为 Web 基石的 HTML。<br>XML 是各种应用程序之间进行数据传输的最常用的工具。<br>通过 XML 您可以发明自己的标签</li>
+</ul>
+<h4 id="XML定义"><a href="#XML定义" class="headerlink" title="XML定义"></a>XML定义</h4><ul>
+<li><p>XML 声明。它定义 XML 的版本（1.0）和所使用的编码（UTF-8 : 万国码, 可显示各种语言）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>XML 必须包含根元素，它是所有其他元素的父元素，比如以下实例中 root 就是根元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;root&gt;</span><br><span class="line">  &lt;child&gt;</span><br><span class="line">    &lt;subchild&gt;.....&lt;<span class="regexp">/subchild&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>child&gt;</span><br><span class="line">&lt;<span class="regexp">/root&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>所有的 XML 元素都必须有一个关闭标签</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;This is a paragraph.&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;br /</span>&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>XML 必须正确嵌套</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;b&gt;<span class="xml"><span class="tag">&lt;<span class="name">i</span>&gt;</span>This text is bold and italic<span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">b</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p>XML 属性值必须加引号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;note date=<span class="string">"12/11/2007"</span>&gt;</span><br><span class="line">&lt;to&gt;Tove&lt;<span class="regexp">/to&gt;</span></span><br><span class="line"><span class="regexp">&lt;from&gt;Jani&lt;/</span><span class="keyword">from</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/note&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>XML 中的注释</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- This is a comment --&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>XML 文档实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;bookstore&gt;</span><br><span class="line">    &lt;book category=<span class="string">"COOKING"</span>&gt;</span><br><span class="line">        &lt;title lang=<span class="string">"en"</span>&gt;Everyday Italian&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">        &lt;author&gt;Giada De Laurentiis&lt;/</span>author&gt;</span><br><span class="line">        &lt;year&gt;<span class="number">2005</span>&lt;<span class="regexp">/year&gt;</span></span><br><span class="line"><span class="regexp">        &lt;price&gt;30.00&lt;/</span>price&gt;</span><br><span class="line">    &lt;<span class="regexp">/book&gt;</span></span><br><span class="line"><span class="regexp">    &lt;!-- This is a comment --&gt;</span></span><br><span class="line"><span class="regexp">    &lt;book category="CHILDREN"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;title lang="en"&gt;Harry Potter&lt;/</span>title&gt;</span><br><span class="line">        &lt;author&gt;J K. Rowling&lt;<span class="regexp">/author&gt;</span></span><br><span class="line"><span class="regexp">        &lt;year&gt;2005&lt;/y</span>ear&gt;</span><br><span class="line">        &lt;price&gt;<span class="number">29.99</span>&lt;<span class="regexp">/price&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>book&gt;</span><br><span class="line">    &lt;book category=<span class="string">"WEB"</span>&gt;</span><br><span class="line">        &lt;title lang=<span class="string">"en"</span>&gt;Learning XML&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">        &lt;author&gt;Erik T. Ray&lt;/</span>author&gt;</span><br><span class="line">        &lt;year&gt;<span class="number">2003</span>&lt;<span class="regexp">/year&gt;</span></span><br><span class="line"><span class="regexp">        &lt;price&gt;39.95&lt;/</span>price&gt;</span><br><span class="line">    &lt;<span class="regexp">/book&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>bookstore&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="XPath"><a href="#XPath" class="headerlink" title="XPath"></a><a href="https://www.runoob.com/xpath/xpath-tutorial.html" target="_blank" rel="noopener">XPath</a></h2><h4 id="什么是-XPath？"><a href="#什么是-XPath？" class="headerlink" title="什么是 XPath？"></a>什么是 XPath？</h4></li>
+<li><p>XPath 是一门在 XML 文档中查找信息的语言。</p>
+</li>
+<li><p>XPath 是 XSLT 中的主要元素。</p>
+</li>
+<li><p>XQuery 和 XPointer 均构建于 XPath 表达式之上</p>
+<h4 id="XPath定义"><a href="#XPath定义" class="headerlink" title="XPath定义"></a>XPath定义</h4></li>
+<li><p>在 XPath 中，有七种类型的节点：元素、属性、文本、命名空间、处理指令、注释以及文档（根）节点。XML 文档是被作为节点树来对待的。树的根被称为文档节点或者根节点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span><br><span class="line"></span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line">  &lt;book&gt;</span><br><span class="line">    &lt;title lang=<span class="string">"en"</span>&gt;Harry Potter&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">    &lt;author&gt;J K. Rowling&lt;/</span>author&gt;</span><br><span class="line">    &lt;year&gt;<span class="number">2005</span>&lt;<span class="regexp">/year&gt;</span></span><br><span class="line"><span class="regexp">    &lt;price&gt;29.99&lt;/</span>price&gt;</span><br><span class="line">  &lt;<span class="regexp">/book&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>bookstore&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;bookstore&gt; (文档节点)</span><br><span class="line"></span><br><span class="line">&lt;author&gt;J K. Rowling&lt;/author&gt; (元素节点)</span><br><span class="line"></span><br><span class="line">lang=&quot;en&quot; (属性节点)</span><br></pre></td></tr></table></figure></li>
+<li><p>节点关系<br>父: 每个元素以及属性都有一个父。<br>子:  元素节点可有零个、一个或多个子。<br>同胞:拥有相同的父的节点。<br>先辈:某节点的父、父的父，等等。<br>后代:某个节点的子，子的子，等等。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;bookstore&gt;</span><br><span class="line">	&lt;book&gt;</span><br><span class="line">	  &lt;title&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">	  &lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">	  &lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">	  &lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">	&lt;/book&gt;</span><br><span class="line">&lt;/bookstore&gt;</span><br></pre></td></tr></table></figure>
+<p>book 元素是 title、author、year 以及 price 元素的父<br>title、author、year 以及 price 元素都是 book 元素的子<br>title、author、year 以及 price 元素都是同胞<br>title 元素的先辈是 book 元素和 bookstore 元素<br>bookstore 的后代是 book、title、author、year 以及 price 元素</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20191111154924284.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191111155609237.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="XQuery"><a href="#XQuery" class="headerlink" title="XQuery"></a><a href="https://www.runoob.com/xquery/xquery-tutorial.html" target="_blank" rel="noopener">XQuery</a></h2><h4 id="什么是-XQuery？"><a href="#什么是-XQuery？" class="headerlink" title="什么是 XQuery？"></a>什么是 XQuery？</h4><ul>
+<li><p>XQuery 之于 XML 作用就类似于 SQL 之于数据库的作用。</p>
+</li>
+<li><p>XQuery 是用来从 XML 文档查找和提取元素及属性的语言。</p>
+</li>
+<li><p>XQuery 被设计用来查询 XML 数据 - 不仅仅限于 XML 文件，还包括任何可以 XML 形态呈现的数据，包括数据库。</p>
+<h4 id="XQuery定义"><a href="#XQuery定义" class="headerlink" title="XQuery定义"></a>XQuery定义</h4></li>
+<li><p>如果使用 FLWOR选取节点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doc(<span class="string">"books.xml"</span>)/bookstore/book[price&gt;<span class="number">30</span>]/title</span><br></pre></td></tr></table></figure>
+<p>上面这个表达式可选取 bookstore 元素下的 book 元素下所有的 title 元素，并且其中的 price 元素的值必须大于 30。</p>
+</li>
+<li><p>通过 FLWOR，您可以对结果进行排序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> $x <span class="keyword">in</span> doc(<span class="string">"books.xml"</span>)/bookstore/book</span><br><span class="line">where $x/price&gt;<span class="number">30</span></span><br><span class="line">order by $x/title</span><br><span class="line"><span class="keyword">return</span> $x/title</span><br></pre></td></tr></table></figure>
+<p>FLWOR 是 “For, Let, Where, Order by, Return” 的只取首字母缩写。</p>
+</li>
+<li><p>for 语句把 bookstore 元素下的所有 book 元素提取到名为 $x 的变量中。</p>
+</li>
+<li><p>where 语句选取了 price 元素值大于 30 的 book 元素。</p>
+</li>
+<li><p>order by 语句定义了排序次序。将根据 title 元素进行排序。</p>
+</li>
+<li><p>return 语句规定返回什么内容。在此返回的是 title 元素。</p>
+</li>
+</ul>
+<h4 id="XQuery-条件表达式"><a href="#XQuery-条件表达式" class="headerlink" title="XQuery 条件表达式"></a>XQuery 条件表达式</h4><p>“If-Then-Else” 可以在 XQuery 中使用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> $x <span class="keyword">in</span> doc(<span class="string">"books.xml"</span>)/bookstore/book</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">if</span> ($x/@category=<span class="string">"CHILDREN"</span>)</span><br><span class="line">then &lt;child&gt;&#123;data($x/title)&#125;&lt;<span class="regexp">/child&gt;</span></span><br><span class="line"><span class="regexp">else &lt;adult&gt;&#123;data($x/</span>title)&#125;&lt;<span class="regexp">/adult&gt;</span></span><br></pre></td></tr></table></figure>
+<p>请注意 “If-Then-Else” 的语法：if 表达式后的圆括号是必需的。else 也是必需的，不过只写 “else ()” 也可以。</p>
+<h4 id="XQuery-比较"><a href="#XQuery-比较" class="headerlink" title="XQuery 比较"></a>XQuery 比较</h4><p>在 XQuery 中，有两种方法来比较值。</p>
+<p>通用比较：=, !=, &lt;, &lt;=, &gt;, &gt;=<br>值的比较：eq、ne、lt、le、gt、ge<br>这两种比较方法的差异如下：<br>请看下面的 XQuery 表达式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$bookstore//book/@q &gt; 10</span><br></pre></td></tr></table></figure>
+<p>如果 q 属性的值大于 10，上面的表达式的返回值为 true。</p>
+<p>如下实例，如果仅返回一个 q，且它的值大于 10，那么表达式返回 true。如果不止一个 q 被返回，则会发生错误：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$bookstore//book/@q gt 10</span><br></pre></td></tr></table></figure>
+
+<h1 id="更多技术分享环境登录我的博客"><a href="#更多技术分享环境登录我的博客" class="headerlink" title="更多技术分享环境登录我的博客"></a>更多技术分享环境登录我的博客</h1><p><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></p>
+<hr>
+<ul>
+<li>本笔记不允许任何个人和组织转载</li>
+<li>以上素材来自 <a href="https://www.runoob.com/" target="_blank" rel="noopener">菜鸟教程</a></li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
