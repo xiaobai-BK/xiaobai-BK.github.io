@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>“学习XML数据库（Marklogic）实战（1）” - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。本文链接：http://www.blbk.info
+学习XML数据库（Marklogic）实战,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">“学习XML数据库（Marklogic）实战（1）”</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">“学习XML数据库（Marklogic）实战（1）”</h1>
+        <div class="stuff">
+            <span>十一月 11, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Marklogic/" rel="tag">Marklogic</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>版权声明：本文为博主原创文章，遵循 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC 4.0 BY-SA</a> 版权协议，转载请附上原文出处链接和本声明。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
+<h1 id="学习XML数据库（Marklogic）实战（1）"><a href="#学习XML数据库（Marklogic）实战（1）" class="headerlink" title="学习XML数据库（Marklogic）实战（1）"></a>学习XML数据库（Marklogic）实战（1）</h1><h2 id="1-下载Marklogic-Server"><a href="#1-下载Marklogic-Server" class="headerlink" title="1.下载Marklogic Server"></a>1.下载Marklogic Server</h2><p>在非商业的情况下，Marklogic Server数据库是免费的，因为咱们是先学习Marklogic Server，所以先下载windows装在本机，易于操作，配合开发工具(IDEA)</p>
+<p>目前，下载Marklogic Server需要注册登录MarkLogic社区<br> <a href="https://developer.marklogic.com/products/marklogic-server/10.0" target="_blank" rel="noopener">Marklogic Server下载地址</a>.</p>
+<p> 也可以直接从我网盘下载<br>链接：<a href="https://pan.baidu.com/s/1nM_ZqxVqrGfDahKH35qM2w" target="_blank" rel="noopener">https://pan.baidu.com/s/1nM_ZqxVqrGfDahKH35qM2w </a>.<br>提取码：vq3d </p>
+<ul>
+<li><p>进入下载页面，可以看到有云平台部署，Windows，Mac OS下载，这里可以选择下载MarkLogic Server x64（AMD64，Intel EM64T）64位Windows安装程序版本。<img src="https://img-blog.csdnimg.cn/2019111109360142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>点击下载会弹出框让你先进行登录他的MarkLogic社区平台（sign up注册）<img src="https://img-blog.csdnimg.cn/20191111093834107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>注册并下载<br><img src="https://img-blog.csdnimg.cn/20191111094504250.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="!\[在这里插入图片描述\](https://img-blog.csdnimg.cn/20191111094230234.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70"></p>
+</li>
+<li><p>点击注册并下载后，会弹回上一个界面，勾选同意条款，然后点击下载<br><img src="https://img-blog.csdnimg.cn/20191111094635995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p>OK 这个时候咱们就已经下载好了，不是很难，但是国内下载很慢，建议梯子</p>
+<h2 id="2-Windows下安装Marklogic-Server"><a href="#2-Windows下安装Marklogic-Server" class="headerlink" title="2.Windows下安装Marklogic Server"></a>2.Windows下安装Marklogic Server</h2><ul>
+<li>Marklogic Server的安装就比较简单了，它不想mysql等数据库要配置东西，只需要点击软件安装，选择路径就OK<br><img src="https://img-blog.csdnimg.cn/20191111104458483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>我就不默认安装了，个人推荐选择一个盘符指定安装<br><img src="https://img-blog.csdnimg.cn/20191111105035443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<p>开始菜单启动Admin marklogic server,和普通的win软件没什么异同。弹出的启动窗口启动完成后，自动关闭，说明安装已经完毕了。</p>
+<h2 id="3-配置Marklogic-Server"><a href="#3-配置Marklogic-Server" class="headerlink" title="3.配置Marklogic Server"></a>3.配置Marklogic Server</h2><ul>
+<li>打开服务，找到MarkLogic，启动此服务<br><img src="https://img-blog.csdnimg.cn/2019111113282253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>在浏览器中输入localhost:8001,回车，能看到初始化配置界面，由于我们属于测试阶段，还用不到集群，可以直接忽略，点击skip。<br><img src="https://img-blog.csdnimg.cn/20191111133140593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>接下来，配置Admin用户名和密码。之后，在每次登陆的时候，网页都将提示我们输入次用户名和密码，请牢记(设置账号admin 密码11111–&gt;好记)<br><img src="https://img-blog.csdnimg.cn/20191111133307524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>设置过后，就来到了后台管理页面了，以后没事会常来的，所以账号密码简单点<br><img src="https://img-blog.csdnimg.cn/20191111133555213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="控制台与激活"><a href="#控制台与激活" class="headerlink" title="控制台与激活"></a>控制台与激活</h2></li>
+<li>在浏览器输入<a href="http://localhost:8000/qconsole/" target="_blank" rel="noopener">http://localhost:8000/qconsole/</a><br>输入之前的账号密码，就来到了控制台页面，在这里，你可以测试你的demo<br><img src="https://img-blog.csdnimg.cn/20191111133836740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>在admin后台管理页面有一行说No license key has been entered，说我们还没有许可证，所以我们去申请一个许可证<br>点击Get Deverloper License, 输入一些个人信息，同意Marklogic条约，即可免费申请到一个license key，当然它只能要求你在本机上使用，而且不能做商用。<br><img src="https://img-blog.csdnimg.cn/20191111134152201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>点击ok，server会自动重启，自动刷新Admin后台管理页面，发现未许可的提示已经没有了。现在你应该可以尽情地享用Marklogic了，按照官网的介绍，这个license只有6个月时间，之后需要再次申请。申请到了许可。<h1 id="更多技术分享环境登录我的博客"><a href="#更多技术分享环境登录我的博客" class="headerlink" title="更多技术分享环境登录我的博客"></a>更多技术分享环境登录我的博客</h1><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></li>
+</ul>
+<hr>
+<ul>
+<li>本笔记不允许任何个人和组织转载</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
