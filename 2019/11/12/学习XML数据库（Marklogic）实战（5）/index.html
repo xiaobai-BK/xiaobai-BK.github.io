@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>“学习XML数据库（Marklogic）实战（5）” - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议。本文链接：http://www.blbk.info
+学习XML数据库（Marklogic）实战（5）基于XQuery的Mark,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">“学习XML数据库（Marklogic）实战（5）”</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">“学习XML数据库（Marklogic）实战（5）”</h1>
+        <div class="stuff">
+            <span>十一月 12, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Marklogic/" rel="tag">Marklogic</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>版权声明：本文为博主原创文章，遵循 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC 4.0 BY-SA</a> 版权协议。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
+<h1 id="学习XML数据库（Marklogic）实战（5）"><a href="#学习XML数据库（Marklogic）实战（5）" class="headerlink" title="学习XML数据库（Marklogic）实战（5）"></a>学习XML数据库（Marklogic）实战（5）</h1><h2 id="基于XQuery的Marklogic增删改查"><a href="#基于XQuery的Marklogic增删改查" class="headerlink" title="基于XQuery的Marklogic增删改查"></a>基于XQuery的Marklogic增删改查</h2><ul>
+<li>这一章仔细看，别什么都无脑复制进去<ul>
+<li>摘要：任何复杂的数据库操作都离不开基本的增删改查操作，本节介绍在Marklogic8 API <a href="https://docs.marklogic.com下XQuery的基本语法。" target="_blank" rel="noopener">https://docs.marklogic.com下XQuery的基本语法。</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="建数据库"><a href="#建数据库" class="headerlink" title="建数据库"></a>建数据库</h4><ul>
+<li>首先登陆Admin Page，找到Database.<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxMDU5MjIyNjUucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></li>
+<li>点击create<br><img src="https://img-blog.csdnimg.cn/2019111211004563.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>填入database名字，语言选择中文zh（注意zh-Hant为繁体中文）其他选项全部取默认值。<br><img src="https://img-blog.csdnimg.cn/20191112110125564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>点击ok之后，出现提示，需要将database merge到forest。<br><img src="https://img-blog.csdnimg.cn/20191112110206363.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>由于没有forest,创建一个forest<br><img src="https://img-blog.csdnimg.cn/20191112110427440.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191112110545313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>创建完Forest后，回来创建的库来给它分配Forest<br><img src="https://img-blog.csdnimg.cn/20191112110713222.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20191112110741552.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>创建好的database，可以在qConsole中看到，之后的操作如果不做特殊说明，都在该数据库下进行。<br><img src="https://img-blog.csdnimg.cn/20191112110827733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ul>
+<h4 id="插入文档"><a href="#插入文档" class="headerlink" title="插入文档"></a>插入文档</h4><ul>
+<li>API(这不是直接粘进去就运行的)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">xdmp:<span class="built_in">document</span>-insert(</span><br><span class="line">   $uri <span class="keyword">as</span> xs:string,</span><br><span class="line">   $root <span class="keyword">as</span> node(),</span><br><span class="line">   [$permissions <span class="keyword">as</span> element(sec:permission)*],</span><br><span class="line">   [$collections <span class="keyword">as</span> xs:string*],</span><br><span class="line">   [$quality <span class="keyword">as</span> xs:int?],</span><br><span class="line">   [$forest-ids <span class="keyword">as</span> xs:unsignedLong*]</span><br><span class="line">) <span class="keyword">as</span> empty-sequence()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>– $uri : 文档存入的路径</li>
+</ul>
+<p>– $root : 插入文档的内容<br>– 加中括号，表示该参数为可选参数<br>– $permissions : 插入的文档该有的权限。默认取 xdmp:default-permissions()权限。文档的创建者至少拥有文档的update权限。<br>– $collections : 插入的文档所属的collection。默认取 xdmp:default-collections()。<br>– $quality : 搜索时，该值影响搜索结果的相关性，正数增加相关性，负数减小相关性。默认值为0.<br>– $forest-ids : 指定文档插入的forest。指定多个时，只插入其中一个，所指定的 forest中至少有一个可以做update.。默认插入该数据库所merge的forest。</p>
+<p>==Marklogic权限是一个庞大而复杂的概念，有很多操作涉及到权限分配与管理。在讲解过程中，我使用是admin的权限操作，该账户拥有较高权限，暂且不提权限管理。在实际生产环境中，会加入各种类型的使用者，他们可能拥有完全不同的权限，这些内容在之后章节中会深入讲到。==</p>
+<ul>
+<li>举例</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">xquery version <span class="string">"1.0-ml"</span>;</span><br><span class="line">declare namespace html = <span class="string">"http://www.w3.org/1999/xhtml"</span>;</span><br><span class="line">xdmp:<span class="built_in">document</span>-insert(<span class="string">"/books.xml"</span>,</span><br><span class="line">&lt;books&gt;</span><br><span class="line">    &lt;book id=<span class="string">"1010596200"</span> category=<span class="string">"编程"</span>&gt;</span><br><span class="line">        &lt;title&gt;Java编程思想&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">        &lt;author&gt;埃克尔&lt;/</span>author&gt;</span><br><span class="line">        &lt;pubDate&gt;<span class="number">2007</span><span class="number">-6</span><span class="number">-1</span>&lt;<span class="regexp">/pubDate&gt;</span></span><br><span class="line"><span class="regexp">        &lt;pages&gt;880&lt;/</span>pages&gt;</span><br><span class="line">        &lt;price&gt;<span class="number">30.0</span>&lt;<span class="regexp">/price&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>book&gt;</span><br><span class="line">    &lt;book id=<span class="string">"1010696100"</span> category=<span class="string">"文学"</span>&gt;</span><br><span class="line">        &lt;title&gt;红楼梦&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">        &lt;author&gt;</span></span><br><span class="line"><span class="regexp">            &lt;firstAuthor&gt;曹雪芹&lt;/</span>firstAuthor&gt;</span><br><span class="line">            &lt;secondAuthor&gt;高鹗&lt;<span class="regexp">/secondAuthor&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>author&gt;</span><br><span class="line">        &lt;pubDate&gt;<span class="number">2012</span><span class="number">-9</span><span class="number">-1</span>&lt;<span class="regexp">/pubDate&gt;</span></span><br><span class="line"><span class="regexp">        &lt;pages&gt;1606&lt;/</span>pages&gt;</span><br><span class="line">        &lt;price&gt;<span class="number">41.5</span>&lt;<span class="regexp">/price&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>book&gt;</span><br><span class="line">&lt;<span class="regexp">/books&gt;,</span></span><br><span class="line"><span class="regexp">xdmp:default-permissions(),</span></span><br><span class="line"><span class="regexp">xdmp:default-collections()</span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在qConsole中键入如上代码，选择Content Source 为 Teaching，选择Query Type为Xquery , 点击Run, 即可看到输出your query returned an empty sequence 。如果有语法错误，会显示出来原因与大致出错位置。如果文档的uri是新的，会创建该文档，如果是存在的路径，则会覆盖原始文件。<br>插入成功后，点击Explore<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxMTIxMjExMjcucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></li>
+<li>在列表中可以看到刚插入的文档名称<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxMTE5Mjc0NDgucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></li>
+<li>点击对应文档，可以看到内容<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxMTIwMzAzNjcucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"><h2 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h2></li>
+</ul>
+<ul>
+<li>更新主要有4种类型：<ul>
+<li>1 在节点之后插入节点</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xdmp:node-<span class="keyword">insert</span>-<span class="keyword">after</span>(</span><br><span class="line">   $sibling <span class="keyword">as</span> node(),</span><br><span class="line">   $<span class="keyword">new</span> <span class="keyword">as</span> node()</span><br><span class="line">) <span class="keyword">as</span> <span class="keyword">empty</span>-<span class="keyword">sequence</span>()</span><br></pre></td></tr></table></figure>
+<p>例如我们要在上例中添加出版社的信息到出版日期之后</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xdmp:node-<span class="keyword">insert</span>-<span class="keyword">after</span>(doc(<span class="string">"/books.xml"</span>)/books/book[title=<span class="string">"Java编程思想"</span>]/pubDate, &lt;publisher&gt;机械工业出版社出版&lt;/publisher&gt;)</span><br></pre></td></tr></table></figure>
+<p>可以看到已经添加了所要的数据<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxMTI5NDAyOTQucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<ul>
+<li>2 在节点之前插入节点</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xdmp:node-<span class="keyword">insert</span>-<span class="keyword">before</span>(</span><br><span class="line">   $sibling <span class="keyword">as</span> node(),</span><br><span class="line">   $<span class="keyword">new</span> <span class="keyword">as</span> node()</span><br><span class="line">) <span class="keyword">as</span> <span class="keyword">empty</span>-<span class="keyword">sequence</span>()</span><br></pre></td></tr></table></figure>
+<p>和xdmp:node-insert-after不同的就是插入节点在之前，就不举例了。</p>
+<ul>
+<li>3 插入子节点</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xdmp:node-<span class="keyword">insert</span>-<span class="keyword">child</span>(</span><br><span class="line">   $<span class="keyword">parent</span> <span class="keyword">as</span> node(),</span><br><span class="line">   $<span class="keyword">new</span> <span class="keyword">as</span> node()</span><br><span class="line">) <span class="keyword">as</span> <span class="keyword">empty</span>-<span class="keyword">sequence</span>()</span><br></pre></td></tr></table></figure>
+<p>例如我们要给页码添加一个子节点-开本</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xdmp:node-<span class="keyword">insert</span>-<span class="keyword">child</span>(doc(<span class="string">"/books.xml"</span>)/books/book[title=<span class="string">"Java编程思想"</span>]/pages, &lt;<span class="keyword">format</span>&gt;<span class="number">1</span>/<span class="number">16</span>&lt;/<span class="keyword">format</span>&gt; )</span><br></pre></td></tr></table></figure>
+<p>看一下是不是在pages下多了一个子节点format<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxMzIxMjkyMzgucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<ul>
+<li>4 节点更换</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xdmp:node-<span class="keyword">replace</span>(</span><br><span class="line">   $<span class="keyword">old</span> <span class="keyword">as</span> node(),</span><br><span class="line">   $<span class="keyword">new</span> <span class="keyword">as</span> node()</span><br><span class="line">) <span class="keyword">as</span> <span class="keyword">empty</span>-<span class="keyword">sequence</span>()</span><br></pre></td></tr></table></figure>
+<p>例如要将书的标题title更新为bookName</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xdmp:node-<span class="keyword">replace</span>(doc(<span class="string">"/books.xml"</span>)/books/book[title=<span class="string">"Java编程思想"</span>]/title, &lt;bookName&gt;<span class="keyword">Java</span>编程思想第<span class="number">5</span>版&lt;/bookName&gt; )</span><br></pre></td></tr></table></figure>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxMzI2MDAzNzMucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<h4 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h4><p>Marklogic 的查询功能相当丰富，API cts的大部分方法都为查询服务，还有search,方法不多，但是有些很重要。本节主要介绍cts的部分query函数和search下比较重要的函数。<br>为了更切合生产环境，现在准备如下数据：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line"><span class="keyword">declare</span> namespace html = <span class="string">"http://www.w3.org/1999/xhtml"</span>;</span><br><span class="line">xdmp:document-<span class="keyword">insert</span>(<span class="string">"/book/1010596200.xml"</span>,</span><br><span class="line">    &lt;book <span class="keyword">id</span>=<span class="string">"1010596200"</span> <span class="keyword">category</span>=<span class="string">"编程"</span>&gt;</span><br><span class="line">        &lt;title&gt;<span class="keyword">Java</span>编程思想&lt;/title&gt;</span><br><span class="line">        &lt;author&gt;埃克尔&lt;/author&gt;</span><br><span class="line">        &lt;pubDate&gt;<span class="number">2007</span><span class="number">-6</span><span class="number">-1</span>&lt;/pubDate&gt;</span><br><span class="line">        &lt;pages&gt;<span class="number">880</span>&lt;/pages&gt;</span><br><span class="line">        &lt;price&gt;<span class="number">30.0</span>&lt;/price&gt;</span><br><span class="line">    &lt;/book&gt;,</span><br><span class="line">xdmp:<span class="keyword">default</span>-permissions(),</span><br><span class="line"><span class="string">"book"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line"><span class="keyword">declare</span> namespace html = <span class="string">"http://www.w3.org/1999/xhtml"</span>;</span><br><span class="line">xdmp:document-<span class="keyword">insert</span>(<span class="string">"/book/1010696100.xml"</span>,</span><br><span class="line">&lt;book <span class="keyword">id</span>=<span class="string">"1010696100"</span> <span class="keyword">category</span>=<span class="string">"文学"</span>&gt;</span><br><span class="line">&lt;title&gt;红楼梦&lt;/title&gt;</span><br><span class="line">&lt;author&gt;</span><br><span class="line">&lt;firstAuthor&gt;曹雪芹&lt;/firstAuthor&gt;</span><br><span class="line">&lt;secondAuthor&gt;高鹗&lt;/secondAuthor&gt;</span><br><span class="line">&lt;/author&gt;</span><br><span class="line">&lt;pubDate&gt;<span class="number">2012</span><span class="number">-9</span><span class="number">-1</span>&lt;/pubDate&gt;</span><br><span class="line">&lt;pages&gt;<span class="number">1606</span>&lt;/pages&gt;</span><br><span class="line">&lt;price&gt;<span class="number">41.5</span>&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;,</span><br><span class="line">xdmp:<span class="keyword">default</span>-permissions(),</span><br><span class="line"><span class="string">"book"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line"><span class="keyword">declare</span> namespace html = <span class="string">"http://www.w3.org/1999/xhtml"</span>;</span><br><span class="line">xdmp:document-<span class="keyword">insert</span>(<span class="string">"/book/1010796100.xml"</span>,</span><br><span class="line">&lt;book <span class="keyword">id</span>=<span class="string">"1010796100"</span> <span class="keyword">category</span>=<span class="string">"教育"</span>&gt;</span><br><span class="line">&lt;title&gt;资格考试&lt;/title&gt;</span><br><span class="line">&lt;author&gt;教育集团&lt;/author&gt;</span><br><span class="line">&lt;pubDate&gt;<span class="number">2016</span><span class="number">-1</span><span class="number">-15</span>&lt;/pubDate&gt;</span><br><span class="line">&lt;pages&gt;<span class="number">900</span>&lt;/pages&gt;</span><br><span class="line">&lt;price&gt;<span class="number">80.8</span>&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;,</span><br><span class="line">xdmp:<span class="keyword">default</span>-permissions(),</span><br><span class="line"><span class="string">"book"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">xdmp:document-<span class="keyword">insert</span>(<span class="string">"/book/1010596101.xml"</span>,</span><br><span class="line">&lt;book <span class="keyword">id</span>=<span class="string">"1010596101"</span> <span class="keyword">category</span>=<span class="string">"编程"</span>&gt;</span><br><span class="line">&lt;title&gt;<span class="keyword">java</span>核心技术&lt;/title&gt;</span><br><span class="line">&lt;author&gt;霍斯特曼&lt;/author&gt;</span><br><span class="line">&lt;pubDate&gt;<span class="number">2014</span><span class="number">-01</span>&lt;/pubDate&gt;</span><br><span class="line">&lt;pages&gt;<span class="number">704</span>&lt;/pages&gt;</span><br><span class="line">&lt;price&gt;<span class="number">80.8</span>&lt;/price&gt;</span><br><span class="line">&lt;/book&gt;,</span><br><span class="line">xdmp:<span class="keyword">default</span>-permissions(),</span><br><span class="line"><span class="string">"book"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>点击Expore,应该可以看到下图：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxMzM3NDE5MzMucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<ul>
+<li>举例</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let $query := cts:and-query((</span><br><span class="line">                 cts:not-query(cts:word-query("思想")),</span><br><span class="line">                 cts:element-word-query(xs:QName("title"),"java"),</span><br><span class="line">                 cts:element-value-query(xs:QName("pages"),"704")</span><br><span class="line">               ))</span><br><span class="line">let $result := cts:search(/book,$query)</span><br><span class="line">return $result</span><br></pre></td></tr></table></figure>
+<p>这里有大量的查询操作，通过方法名基本可以知道该方法的功能，我就不列出所有的API了，可以到<a href="https://docs.marklogic.com/cts" target="_blank" rel="noopener">https://docs.marklogic.com/cts</a> 查看详细的说明，接下来大致介绍一下常用的query函数。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cts:search(</span><br><span class="line">   $expression as node()*,</span><br><span class="line">   $query as cts:query?,</span><br><span class="line">   [$options as (cts:order|xs:string)*],</span><br><span class="line">   [$quality-weight as xs:double?],</span><br><span class="line">   [$forest-ids as xs:unsignedLong*]</span><br><span class="line">) as node()*</span><br></pre></td></tr></table></figure>
+<p>查询主要有两个参数，第一个传入文档节点，可以是某目录下所有文档，可以是整个Content Source；第二个是query语句，是整个查询的精髓。之后大量的xquery代码都是在组装这个query语句，query语句由各种查询条件合并而来，如查询符合某元素值的cts:element-value-query，查询符合某属性的cts:element-attribute-value-query，查询不符合某条件的cts:not-query等等。</p>
+<p>下面3个函数使用的时候需要注意各自的不同：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cts:element-value-query(</span><br><span class="line">   $element-name as xs:QName*,</span><br><span class="line">   [$text as xs:string*],</span><br><span class="line">   [$options as xs:string*],</span><br><span class="line">   [$weight as xs:double?]</span><br><span class="line">) as cts:element-value-query</span><br></pre></td></tr></table></figure>
+<p>这里指定了元素的值，说明只有元素的值完全符合条件才会返回数据，可以理解为此时为“exact”匹配，当然$options可以设置是否大小写敏感，是否空格敏感。<br>==cts:search(//book,cts:element-value-query(xs:QName(“title”),”java核心技术”))== 会返回id=1010596101的book，但是将其中的“java核心技术”改为“Java核心技术”,只是有一个大小写不同，则查询不到结果。<br>如果只指定元素名，而不指定其值，则返回包含该元素的所有文档。<br>==cts:search(//book,cts:element-value-query(xs:QName(“title”)))== 会返回所有数据，因为每一条数据都包含title元素。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cts:element-word-query(</span><br><span class="line">   $element-name as xs:QName*,</span><br><span class="line">   $text as xs:string*,</span><br><span class="line">   [$options as xs:string*],</span><br><span class="line">   [$weight as xs:double?]</span><br><span class="line">) as cts:element-word-query</span><br></pre></td></tr></table></figure>
+<p>这里必须指定元素名和一个word, 只要该词出现在这一元素的值中，则会返回数据。</p>
+<p>==cts:search(//book,cts:element-word-query(xs:QName(“title”),”java”))==<br>这里会返回id=1010596101 和id= 1010596200两条数据。后者的标题中”java”有大写字母，但是可以识别到。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cts:element-range-query(</span><br><span class="line">   $element-name as xs:QName*,</span><br><span class="line">   $operator as xs:string,</span><br><span class="line">   $value as xs:anyAtomicType*,</span><br><span class="line">   [$options as xs:string*],</span><br><span class="line">   [$weight as xs:double?]</span><br><span class="line">) as cts:element-range-query</span><br></pre></td></tr></table></figure>
+<p>这里还要传一个操作符（支持的操作符[&lt;, &lt;=, &gt;, &gt;= ,!=, =]）,既然有操作符，当然就是为了做比较，这个函数可以返回符合某一范围的所有数据，较为常用的是找出某一时间点之前或之后的数据，或者在某一数值范围内的数据。<br>==cts:search(//book,cts:element-range-query(xs:QName(“price”),”&gt;”,50.0))== 可以找出价格大于50元的书籍信息。<br>但是当我们在qConsole中运行时，却得到一个错误提示： No decimal element range index for price。原来element-range-query是需要range index的，那这个index从哪里来呢？</p>
+<blockquote>
+<p>下一章博客详解</p>
+</blockquote>
+<hr>
+<h1 id="更多技术分享环境登录我的博客"><a href="#更多技术分享环境登录我的博客" class="headerlink" title="更多技术分享环境登录我的博客"></a>更多技术分享环境登录我的博客</h1><p><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></p>
+<ul>
+<li>本笔记不允许任何个人和组织转载</li>
+<li>以上文章整理于 <a href="https://blog.csdn.net/jiangchao858/article/details/50243273" target="_blank" rel="noopener">CSDNcj96248</a></li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

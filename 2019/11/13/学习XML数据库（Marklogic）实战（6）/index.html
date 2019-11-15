@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>“学习XML数据库（Marklogic）实战（6）” - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议。本文链接：http://www.blbk.info
+学习XML数据库（Marklogic）实战（6）marklogic 8 设,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">“学习XML数据库（Marklogic）实战（6）”</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">“学习XML数据库（Marklogic）实战（6）”</h1>
+        <div class="stuff">
+            <span>十一月 13, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Marklogic/" rel="tag">Marklogic</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>版权声明：本文为博主原创文章，遵循 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC 4.0 BY-SA</a> 版权协议。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
+<h1 id="学习XML数据库（Marklogic）实战（6）"><a href="#学习XML数据库（Marklogic）实战（6）" class="headerlink" title="学习XML数据库（Marklogic）实战（6）"></a>学习XML数据库（Marklogic）实战（6）</h1><h2 id="marklogic-8-设置range-index"><a href="#marklogic-8-设置range-index" class="headerlink" title="marklogic 8 设置range index"></a>marklogic 8 设置range index</h2><ul>
+<li>这一章仔配合上一篇博文《Marklogic增删改查》，没读的朋友建议去读一下在回来看这篇</li>
+</ul>
+<h4 id="下面介绍一下marklogic-8-如何设置element-range-index"><a href="#下面介绍一下marklogic-8-如何设置element-range-index" class="headerlink" title="下面介绍一下marklogic 8 如何设置element range index:"></a>下面介绍一下marklogic 8 如何设置element range index:</h4><ol>
+<li>登陆Admin Page . 地址：hostname:8001, 我的地址是：<a href="http://localhost:8001/" target="_blank" rel="noopener">http://localhost:8001/</a></li>
+<li>点击Databases, 点击数据库名，这里点击xiaobai,这个(xiaobai)数据库是我之前创建的，如果你还没有这个数据库，请参照之前的方法自行创建。</li>
+<li>点击 Element Range Indexes ,右侧页面会展示当前数据库中存在的index。可以看到默认是存在两组inedxes的。</li>
+</ol>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxNDIyMzI3MzMucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"><br>4.点击Add<br>5. 编辑index<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxNDI0MzA1NjgucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<ul>
+<li>说明：</li>
+<li><ul>
+<li>scalar type: 数据类型，主要是一些数值，日期，字符串，url类型</li>
+</ul>
+</li>
+<li><ul>
+<li>namespace uri: 要绑定元素的命名空间</li>
+</ul>
+</li>
+<li><ul>
+<li>localname: 要绑定元素的名称</li>
+</ul>
+</li>
+<li><ul>
+<li>range value positions: 可以加快查询速度，但是会加长加载数据时间、使数据库庞大，一般取false</li>
+</ul>
+</li>
+<li><ul>
+<li>invalid values: 如何处理无效数据，一般选择拒绝接受无效数据。<ul>
+<li>举例<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">xdmp:document-<span class="keyword">insert</span>(<span class="string">"/book/1010896100.xml"</span>,</span><br><span class="line">    &lt;book <span class="keyword">id</span>=<span class="string">"1010896100"</span> <span class="keyword">category</span>=<span class="string">"儿童"</span>&gt;</span><br><span class="line">        &lt;bookName&gt;安徒生童话&lt;/bookName&gt;</span><br><span class="line">        &lt;author&gt;安徒生&lt;/author&gt;</span><br><span class="line">        &lt;pubDate&gt;<span class="number">2016</span><span class="number">-01</span><span class="number">-25</span>&lt;/pubDate&gt;</span><br><span class="line">        &lt;publisher&gt;同心出版社&lt;/publisher&gt;</span><br><span class="line">        &lt;pages&gt;<span class="number">122</span>&lt;/pages&gt;</span><br><span class="line">        &lt;price&gt;<span class="number">17</span>元&lt;/price&gt;</span><br><span class="line">    &lt;/book&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>当你已经在price上设置了index为double类型，上例将报错 Invalid lexical value。原来我插入的数据为17元，不符合所要求的数据类型，而我将无效数据的处理设置为reject，因此报错，如果设置值为ignore，则不会报错，可以把数据插入到数据库，但是不建议这样，将不合规的数据插入后==cts:search(//book,cts:element-range-query(xs:QName(“price”),”&gt;”,50.0))== 就会报错。<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxNDI5MTk5NTkucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述">关于查询，还有一个search函数库：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">search:search(</span><br><span class="line">   $qtext as xs:string+,</span><br><span class="line">   [$options as element(search:options)?],</span><br><span class="line">   [$<span class="keyword">start</span> <span class="keyword">as</span> xs:unsignedLong?],</span><br><span class="line">   [$page-<span class="keyword">length</span> <span class="keyword">as</span> xs:unsignedLong?]</span><br><span class="line">) <span class="keyword">as</span> <span class="keyword">element</span>(<span class="keyword">search</span>:response)</span><br></pre></td></tr></table></figure>
+<p>举例==search:search(“java”)==, 但是在qConsole中运行时，报错Prefix search has no namespace binding。这是因为search不是Marklogic 8 的内嵌函数，我们需要手动引入写在文件中<br>==import module namespace search = “<a href="http://marklogic.com/appservices/search&quot;" target="_blank" rel="noopener">http://marklogic.com/appservices/search&quot;</a><br>at “/MarkLogic/appservices/search/search.xqy”;== 关于Marklogic的build-in函数，大致有cts、fn、math、rdf、sc、sem、spell、sql、xdmp等。<br>这一API重要的参数不在于qtext, 而是options，这些内容将在后面重点讲到，此处跳过。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">search:parse(</span><br><span class="line">   $qtext as xs:string+,</span><br><span class="line">   [$options as element(search:options)?],</span><br><span class="line">   [$output as xs:string?]</span><br><span class="line">) as element()?</span><br></pre></td></tr></table></figure>
+<p>主要用来解析自定义的query，比如你想用TITLE:java核心技术这种形式表示查询标题为”java核心技术”的书籍，可以用下面代码来处理自定义的逻辑：</p>
+<ul>
+<li>举例</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line"><span class="keyword">declare</span> namespace html = <span class="string">"http://www.w3.org/1999/xhtml"</span>;</span><br><span class="line">import module namespace search = "http://marklogic.com/appservices/search"</span><br><span class="line">    at "/MarkLogic/appservices/search/search.xqy";</span><br><span class="line">let $q := "TITLE:java核心技术"</span><br><span class="line">let $query := search:parse($q,</span><br><span class="line">   &lt;options xmlns="http://marklogic.com/appservices/search"&gt;</span><br><span class="line">     &lt;constraint name="TITLE"&gt;</span><br><span class="line">       &lt;value&gt;</span><br><span class="line">          &lt;element name="title"/&gt;</span><br><span class="line">        &lt;/value&gt;</span><br><span class="line">     &lt;/constraint&gt;</span><br><span class="line">     &lt;/options&gt; </span><br><span class="line">)</span><br><span class="line">let $query := cts:query($query)</span><br><span class="line">let $result := cts:search(/book,$query)</span><br><span class="line">return $result</span><br></pre></td></tr></table></figure>
+<p>将参数$q改为==TITLE:红楼梦==, 逻辑是一样的。这里的constraint是一个很有用的概念，它可以将查询限定在某些条件下，在做一些复杂查询时可以事半功倍。</p>
+<ul>
+<li>举例</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">search:suggest(</span><br><span class="line">   $qtext as xs:string+,</span><br><span class="line">   [$options as element(search:options)?],</span><br><span class="line">   [$limit as xs:unsignedInt?],</span><br><span class="line">   [$cursor-position as xs:unsignedInt?],</span><br><span class="line">   [$focus as xs:positiveInteger?],</span><br><span class="line">   [$query as element(search:query)*]</span><br><span class="line">) as xs:string*</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>这个API可以用来做词汇联想，比如在一些搜索界面，输入一个字或词后，会自动提示可能输入的情况，方便用户输入。</p>
+<ul>
+<li>$qtext ：Sting数组，默认第一个字符串是用来关联查询的关键词，用focus参数可以更改位置。剩下的字符串解析为cts:query,然后用cts:and-query链接，并将结果作为constraint去匹配词库。</li>
+<li>$options : 定义查询语法并控制查询条件，参见search:search的 options</li>
+<li>$limit : 返回值的个数，默认10条</li>
+<li>$cursor-position : 用来确定哪些查询text用来关联匹配</li>
+<li>$focus : 用来确定qtext中的关键词</li>
+<li>$query : 一个限定qtext查询范围的query</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line">import module namespace search = "http://marklogic.com/appservices/search"</span><br><span class="line">    at "/MarkLogic/appservices/search/search.xqy";</span><br><span class="line"></span><br><span class="line">let $options := </span><br><span class="line">&lt;search:options xmlns="http://marklogic.com/appservices/search"&gt;</span><br><span class="line"> &lt;default-suggestion-source&gt;</span><br><span class="line">   &lt;range  type="xs:string" collation="http://marklogic.com/collation/" &gt;</span><br><span class="line">      &lt;element  name="title"/&gt;</span><br><span class="line">   &lt;/range&gt;</span><br><span class="line"> &lt;/default-suggestion-source&gt;</span><br><span class="line">&lt;/search:options&gt;</span><br><span class="line">return search:suggest("java", $options)</span><br></pre></td></tr></table></figure>
+<p>在运行上面代码之前，需要先在数据库中将title配置上range index，因为对title用到的是range query。上例返回的是一个 {“java核心技术”，“Java编程思想”} 数组，可见用“java”在“title”上搜索时，Marklogic能提供相应的建议。<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxNTIwMjMzNjkucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"><br>运行结果<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxNTIwNTk5ODcucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<h4 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h4><p>Marklogic的删除操作常用的有文档删除和节点删除：</p>
+<p>1 . 文档删除只需要文档的uri即可，删除成功后返回==your query returned an empty sequence.== 如果该文档不存在，则返回==Document not found==</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xdmp:document-<span class="keyword">delete</span>(</span><br><span class="line">   $uri <span class="keyword">as</span> xs:<span class="keyword">string</span></span><br><span class="line">) <span class="keyword">as</span> <span class="keyword">empty</span>-<span class="keyword">sequence</span>()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>举例</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line">xdmp:document-<span class="keyword">delete</span>(<span class="string">"/book/1010896100.xml"</span>)</span><br></pre></td></tr></table></figure>
+<p>2 . 节点删除需要节点的xpath，删除成功后返回your query returned an empty sequence. 如果所删除的节点不存在，返回同样的提示信息。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xdmp:node-<span class="keyword">delete</span>(</span><br><span class="line">   $<span class="keyword">old</span> <span class="keyword">as</span> node()</span><br><span class="line">) <span class="keyword">as</span> <span class="keyword">empty</span>-<span class="keyword">sequence</span>()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>举例</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line"><span class="keyword">declare</span> namespace html = <span class="string">"http://www.w3.org/1999/xhtml"</span>;</span><br><span class="line">xdmp:node-<span class="keyword">delete</span>(doc(<span class="string">"/book/1010896100.xml"</span>)/book/publisher)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="更多技术分享环境登录我的博客"><a href="#更多技术分享环境登录我的博客" class="headerlink" title="更多技术分享环境登录我的博客"></a>更多技术分享环境登录我的博客</h1><p><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></p>
+<ul>
+<li>本笔记不允许任何个人和组织转载</li>
+<li>以上文章整理于 <a href="https://blog.csdn.net/jiangchao858/article/details/50243273" target="_blank" rel="noopener">CSDNcj96248</a></li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

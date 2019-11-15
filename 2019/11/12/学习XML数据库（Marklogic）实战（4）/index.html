@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>“学习XML数据库（Marklogic）实战（1）” - Hexo</title>
+    <title>“学习XML数据库（Marklogic）实战（4）” - Hexo</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
@@ -37,7 +37,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">“学习XML数据库（Marklogic）实战（1）”</h3>
+    <h3 class="subtitle">“学习XML数据库（Marklogic）实战（4）”</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -55,9 +55,9 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">“学习XML数据库（Marklogic）实战（1）”</h1>
+        <h1 class="title">“学习XML数据库（Marklogic）实战（4）”</h1>
         <div class="stuff">
-            <span>十一月 11, 2019</span>
+            <span>十一月 12, 2019</span>
             
   <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Marklogic/" rel="tag">Marklogic</a></li></ul>
 
@@ -65,38 +65,48 @@
         </div>
         <div class="content markdown">
             <p>版权声明：本文为博主原创文章，遵循 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC 4.0 BY-SA</a> 版权协议，转载请附上原文出处链接和本声明。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
-<h1 id="学习XML数据库（Marklogic）实战（1）"><a href="#学习XML数据库（Marklogic）实战（1）" class="headerlink" title="学习XML数据库（Marklogic）实战（1）"></a>学习XML数据库（Marklogic）实战（1）</h1><h2 id="1-下载Marklogic-Server"><a href="#1-下载Marklogic-Server" class="headerlink" title="1.下载Marklogic Server"></a>1.下载Marklogic Server</h2><p>在非商业的情况下，Marklogic Server数据库是免费的，因为咱们是先学习Marklogic Server，所以先下载windows装在本机，易于操作，配合开发工具(IDEA)</p>
-<p>目前，下载Marklogic Server需要注册登录MarkLogic社区<br> <a href="https://developer.marklogic.com/products/marklogic-server/10.0" target="_blank" rel="noopener">Marklogic Server下载地址</a>.</p>
-<p> 也可以直接从我网盘下载<br>链接：<a href="https://pan.baidu.com/s/17yDEuF1YOnBpS_Vwv8aSRw" target="_blank" rel="noopener">https://pan.baidu.com/s/17yDEuF1YOnBpS_Vwv8aSRw</a>.<br>提取码：zbhj </p>
-<ul>
-<li><p>进入下载页面，可以看到有云平台部署，Windows，Mac OS下载，这里可以选择下载MarkLogic Server x64（AMD64，Intel EM64T）64位Windows安装程序版本。<img src="https://img-blog.csdnimg.cn/2019111109360142.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</li>
-<li><p>点击下载会弹出框让你先进行登录他的MarkLogic社区平台（sign up注册）<img src="https://img-blog.csdnimg.cn/20191111093834107.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</li>
-<li><p>注册并下载<br><img src="https://img-blog.csdnimg.cn/20191111094504250.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="!\[在这里插入图片描述\](https://img-blog.csdnimg.cn/20191111094230234.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70"></p>
-</li>
-<li><p>点击注册并下载后，会弹回上一个界面，勾选同意条款，然后点击下载<br><img src="https://img-blog.csdnimg.cn/20191111094635995.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-</li>
+<h1 id="学习XML数据库（Marklogic）实战（4）"><a href="#学习XML数据库（Marklogic）实战（4）" class="headerlink" title="学习XML数据库（Marklogic）实战（4）"></a>学习XML数据库（Marklogic）实战（4）</h1><h2 id="qconsole简介"><a href="#qconsole简介" class="headerlink" title="qconsole简介"></a>qconsole简介</h2><p>本人是需要解析Schema文档，然后对其进行数据操作，考虑采用Marklogic数据库测试，由于Marklogic数据库针对xml数据来做的数据库，所以个人建议要提前先了解一些xml相关的知识，这样有利于后期学习的理解与吸收。</p>
+<h4 id="qConsole启动"><a href="#qConsole启动" class="headerlink" title="qConsole启动"></a>qConsole启动</h4><ul>
+<li>在电脑上，在浏览器输入<a href="http://localhost:8000/qconsole/。输入用户名好密码，可以看到下图展示界面" target="_blank" rel="noopener">http://localhost:8000/qconsole/。输入用户名好密码，可以看到下图展示界面</a></li>
 </ul>
-<p>OK 这个时候咱们就已经下载好了，不是很难，但是国内下载很慢，建议梯子</p>
-<h2 id="2-Windows下安装Marklogic-Server"><a href="#2-Windows下安装Marklogic-Server" class="headerlink" title="2.Windows下安装Marklogic Server"></a>2.Windows下安装Marklogic Server</h2><ul>
-<li>Marklogic Server的安装就比较简单了，它不想mysql等数据库要配置东西，只需要点击软件安装，选择路径就OK<br><img src="https://img-blog.csdnimg.cn/20191111104458483.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>我就不默认安装了，个人推荐选择一个盘符指定安装<br><img src="https://img-blog.csdnimg.cn/20191111105035443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<p><img src="https://img-blog.csdnimg.cn/20191111164351688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="qConsole组件"><a href="#qConsole组件" class="headerlink" title="qConsole组件"></a>qConsole组件</h4><ul>
+<li>query 可以执行的XQuery， SQL， SPARQL，JavaScript脚本。当你在Query Console中运行语句时，可以在结果区看到result.</li>
+<li>workspace 工作区就是一系列的语句集合，可以用workspace来组织你的Query. 你可以创建很多workspace, 但是只有一个是处于激活状态。</li>
+<li>history 可以记录你之前运行过的query语句。每在Query Console中执行一次，它变可以历史记录存档。点击任意存档，可以恢复当时的query。</li>
+<li>content source 概念同数据库，query console 可以自动为Marklogic构建可用的content sources<h4 id="qConsole使用"><a href="#qConsole使用" class="headerlink" title="qConsole使用"></a>qConsole使用</h4></li>
+<li>创建workspace<br>点击右上角的workspace下拉按钮，新建一个workspace.<br><img src="https://img-blog.csdnimg.cn/20191112085514134.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>添加query<br>点击左上角“+”，打开一个新的query编辑界面<br><img src="https://img-blog.csdnimg.cn/20191112085834877.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">* 重命名<br>双击query或者workspace的名字，可以重命名<br><img src="https://img-blog.csdnimg.cn/20191112085811395.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+<li>选择查询语言<br>Query Type的下拉列表可以选择查询的方式，Marklogic 8 支持以下几种查询语言：</li>
 </ul>
-<p>开始菜单启动Admin marklogic server,和普通的win软件没什么异同。弹出的启动窗口启动完成后，自动关闭，说明安装已经完毕了。</p>
-<h2 id="3-配置Marklogic-Server"><a href="#3-配置Marklogic-Server" class="headerlink" title="3.配置Marklogic Server"></a>3.配置Marklogic Server</h2><ul>
-<li>打开服务，找到MarkLogic，启动此服务<br><img src="https://img-blog.csdnimg.cn/2019111113282253.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>在浏览器中输入localhost:8001,回车，能看到初始化配置界面，由于我们属于测试阶段，还用不到集群，可以直接忽略，点击skip。<br><img src="https://img-blog.csdnimg.cn/20191111133140593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>接下来，配置Admin用户名和密码。之后，在每次登陆的时候，网页都将提示我们输入次用户名和密码，请牢记(设置账号admin 密码11111–&gt;好记)<br><img src="https://img-blog.csdnimg.cn/20191111133307524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>设置过后，就来到了后台管理页面了，以后没事会常来的，所以账号密码简单点<br><img src="https://img-blog.csdnimg.cn/20191111133555213.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><h2 id="控制台与激活"><a href="#控制台与激活" class="headerlink" title="控制台与激活"></a>控制台与激活</h2></li>
-<li>在浏览器输入<a href="http://localhost:8000/qconsole/" target="_blank" rel="noopener">http://localhost:8000/qconsole/</a><br>输入之前的账号密码，就来到了控制台页面，在这里，你可以测试你的demo<br><img src="https://img-blog.csdnimg.cn/20191111133836740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>在admin后台管理页面有一行说No license key has been entered，说我们还没有许可证，所以我们去申请一个许可证<br>点击Get Deverloper License, 输入一些个人信息，同意Marklogic条约，即可免费申请到一个license key，当然它只能要求你在本机上使用，而且不能做商用。<br><img src="https://img-blog.csdnimg.cn/20191111134152201.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
-<li>点击ok，server会自动重启，自动刷新Admin后台管理页面，发现未许可的提示已经没有了。现在你应该可以尽情地享用Marklogic了，按照官网的介绍，这个license只有6个月时间，之后需要再次申请。申请到了许可。</li>
+<p>– JavaScript<br>– XQuery<br>– SQL<br>– SPARQL Query<br>– SPARQL Update<br><img src="https://img-blog.csdnimg.cn/20191112090014834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="运行Query"><a href="#运行Query" class="headerlink" title="运行Query"></a>运行Query</h4><ul>
+<li><p>选择content source<br>每一次运行query，都应选择正确的content soure. 本例中，你可以选择任意的content source.<br><img src="https://img-blog.csdnimg.cn/20191112090211650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>输入个标签<br><img src="https://img-blog.csdnimg.cn/20191112091312757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>点击 “Run”<br><img src="https://img-blog.csdnimg.cn/20191112090241558.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>择结果格式<br><img src="https://img-blog.csdnimg.cn/20191112091340113.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="看历史query"><a href="#看历史query" class="headerlink" title="看历史query"></a>看历史query</h4></li>
+<li><p>每次修改与运行query，qConsole都会将运行脚本与执行时间存档。只有运行过的脚本才会被保存，只有修改过的代码才会生成新的历史记录。qConsole最多保存50条历史记录。<br><img src="https://img-blog.csdnimg.cn/20191112090521336.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="分析Query"><a href="#分析Query" class="headerlink" title="分析Query"></a>分析Query</h4></li>
+<li><p>qConsole可以分析当前运行query的性能。<br><img src="https://img-blog.csdnimg.cn/20191112091422304.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMTY0ODE4,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="浏览数据库"><a href="#浏览数据库" class="headerlink" title="浏览数据库"></a>浏览数据库</h4></li>
+<li><p>从content source中选择一个数据库</p>
+</li>
+<li><p>点击右边的 Explore ，在结果区将展示这个数据库中的文件</p>
+</li>
+<li><p>点击蓝色的文件URI链接，会直接打开此文档</p>
+</li>
+<li><p>来回切换窗口</p>
+</li>
 </ul>
 <hr>
 <h1 id="更多技术分享环境登录我的博客"><a href="#更多技术分享环境登录我的博客" class="headerlink" title="更多技术分享环境登录我的博客"></a>更多技术分享环境登录我的博客</h1><p><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></p>
 <ul>
 <li>本笔记不允许任何个人和组织转载</li>
+<li>以上文章整理于 <a href="https://blog.csdn.net/jiangchao858/article/details/50243273" target="_blank" rel="noopener">CSDNcj96248</a></li>
 </ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->

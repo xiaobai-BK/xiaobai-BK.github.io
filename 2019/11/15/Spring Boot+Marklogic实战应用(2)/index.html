@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>“Spring Boot+Marklogic实战应用(2)” - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议。本文链接：http://www.blbk.info
+Spring Boot+Marklogic应用(2)单一文件操作
+摘要： ,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">“Spring Boot+Marklogic实战应用(2)”</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">“Spring Boot+Marklogic实战应用(2)”</h1>
+        <div class="stuff">
+            <span>十一月 15, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Marklogic/" rel="tag">Marklogic</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>版权声明：本文为博主原创文章，遵循 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC 4.0 BY-SA</a> 版权协议。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
+<h1 id="Spring-Boot-Marklogic应用-2"><a href="#Spring-Boot-Marklogic应用-2" class="headerlink" title="Spring Boot+Marklogic应用(2)"></a>Spring Boot+Marklogic应用(2)</h1><h2 id="单一文件操作"><a href="#单一文件操作" class="headerlink" title="单一文件操作"></a>单一文件操作</h2><blockquote>
+<p>摘要： 在前一节的介绍，相信你已经了解最基本的Spring Boot+Marklogic应用，并且能存入一个文本和读取数据库内容，本章本节继续通过实例来讲解String Boot+MANVE+Marklogic 8的单一文件操作.</p>
+</blockquote>
+<h4 id="将XML文档写入数据库"><a href="#将XML文档写入数据库" class="headerlink" title="将XML文档写入数据库"></a>将XML文档写入数据库</h4><p>以下示例显示了如何将XML文档写入数据库.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.连接到数据库，并将连接存储在一个com.marklogic.client.DatabaseClient对象中</span></span><br><span class="line">DatabaseClient client = DatabaseClientFactory.newClient(</span><br><span class="line">    host, port, <span class="keyword">new</span> DigestAuthContext(username, password));</span><br><span class="line">    </span><br><span class="line"><span class="comment">//2.使用DatabaseClient对象为com.marklogic.client.document.DocumentManager您要访问的文档内容（XML，文本，JSON，二进制，通用）创建适当子类的对象。在此示例代码中，一个XMLDocumentManager。</span></span><br><span class="line">XMLDocumentManager docMgr = client.newXMLDocumentManager();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.取文档的内容。例如，使用InputStream。</span></span><br><span class="line">FileInputStream docStream = <span class="keyword">new</span> FileInputStream(</span><br><span class="line">                                <span class="string">"data"</span>+File.separator+filename);</span><br><span class="line"><span class="comment">//4.创建与输入流关联的Handles以接收文档的内容。获取内容的方式决定了使用哪种Handles。使用Handles的set()方法将其与所需的流关联</span></span><br><span class="line">InputStreamHandle handle = <span class="keyword">new</span> InputStreamHandle(docStream);</span><br><span class="line"></span><br><span class="line"><span class="comment">//5.通过在上调用write()方法DocumentManager，并使用文档URI和句柄的参数来编写文档的内容。</span></span><br><span class="line">docMgr.write(docId, handle);</span><br><span class="line"></span><br><span class="line"><span class="comment">//6.完成数据库后，通过调用DatabaseClient对象的release() 方法释放连接资源。</span></span><br><span class="line">client.release();</span><br></pre></td></tr></table></figure>
+<h4 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h4><ul>
+<li>要删除一个或多个文档，请调用DocumentManager.delete并传入文档的URI。</li>
+<li>要删除文档，应用程序必须以具有rest-writer或rest-admin角色中至少一个的用户身份进行身份验证（或具有该admin角色的用户身份）。</li>
+</ul>
+<p>以下示例显示了如何从数据库中删除XML文档.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 创建com.marklogic.client.DatabaseClient用于连接数据库的。</span></span><br><span class="line">DatabaseClient client = DatabaseClientFactory.newClient(</span><br><span class="line">    host, port, <span class="keyword">new</span> DigestAuthContext(username, password));</span><br><span class="line">    </span><br><span class="line"><span class="comment">//2. 使用该DatabaseClient对象com.marklogic.client.document.DocumentManager为文档格式（XML，文本，JSON或二进制）创建适当子类的对象。</span></span><br><span class="line">XMLDocumentManager docMgr = client.newXMLDocumentManager();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3. 删除文档。例如，以下语句删除2个文档：</span></span><br><span class="line">docMgr.delete(<span class="string">"/example/doc1.xml"</span>, <span class="string">"/example/doc2.json"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//4. 完成操作后，通过调用DatabaseClient对象的release() 方法释放连接资源。</span></span><br><span class="line">client.release();</span><br></pre></td></tr></table></figure>
+<h2 id="读取，修改和写入元数据"><a href="#读取，修改和写入元数据" class="headerlink" title="读取，修改和写入元数据"></a>读取，修改和写入元数据</h2><blockquote>
+<p>从数据库读取文档元数据和向数据库读取文档元数据与读取和写入文档内容非常相似。每个方法都需要在上调用方法com.marklogic.client.document.DocumentManager。元数据的Handles可以是DocumentMetadataHandle用于修改POJO中的元数据的Handles，也可以是原始XML或JSON。</p>
+</blockquote>
+<h4 id="文件中资料"><a href="#文件中资料" class="headerlink" title="文件中资料"></a>文件中资料</h4><p>枚举DocumentManager.Metadata枚举元数据类别（包括ALL）。以下是此枚举涵盖的元数据类型：</p>
+<ol>
+<li>COLLECTIONS：文档集合，这是在数据库中组织文档的一种非分层方式。</li>
+<li>METADATAVALUES：键值元数据，有时也称为元数据字段。</li>
+<li>PERMISSIONS：文档权限。</li>
+<li>PROPERTIES：文档属性。与文档关联的属性值对。</li>
+<li>QUALITY：文档搜索质量。帮助确定最优质的文档。</li>
+</ol>
+<h4 id="读取文档元数据"><a href="#读取文档元数据" class="headerlink" title="读取文档元数据"></a>读取文档元数据</h4><p>读取文档的元数据所需的基本步骤是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 创建一个com.marklogic.client.DatabaseClient用于连接数据库。</span></span><br><span class="line">DatabaseClient client = DatabaseClientFactory.newClient(</span><br><span class="line">    host, port, <span class="keyword">new</span> DigestAuthContext(username, password));</span><br><span class="line"><span class="comment">//2. 使用该DatabaseClient对象com.marklogic.client.document.DocumentManager为文档格式（XML，文本，JSON或二进制）创建适当子类的对象。</span></span><br><span class="line">XMLDocumentManager docMgr = client.newXMLDocumentManager();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3. 创建一个com.marklogic.client.io.DocumentMetadataHandle对象，该对象将接收文档的元数据。或者，可以创建原始XML或JSON。</span></span><br><span class="line">DocumentMetadataHandle metadataHandle = <span class="keyword">new</span> DocumentMetadataHandle();</span><br><span class="line"></span><br><span class="line"><span class="comment">//4. 如果还想获取文档的内容，请创建一个Handles以接收它。请注意，需要用于文档内容和元数据的单独Handles。</span></span><br><span class="line">DOMHandle docHandle = <span class="keyword">new</span> DOMHandle();</span><br><span class="line"></span><br><span class="line"><span class="comment">//5. 通过调用带有元数据Handles参数的readMetadata()方法，读取文档的元DocumentManager数据。请注意，还可以read()使用内容Handles的附加参数进行调用，以便在单个操作中将元数据读入元数据Handles，并将内容读入Handles。调用read()，应用程序必须进行身份验证的rest-reader，rest-writer或rest-admin。下面docId是一个包含文档URI的变量。</span></span><br><span class="line"><span class="comment">//read only the metadata into a handle</span></span><br><span class="line">docMgr.readMetadata(docId, metadataHandle); </span><br><span class="line"><span class="comment">//read metadata and content</span></span><br><span class="line">docMgr.read(docId, metadataHandle, docHandle); </span><br><span class="line"><span class="comment">//6. 通过调用get()元数据Handles上的方法来访问元数据。</span></span><br><span class="line">DocumentCollections collections = metadataHandle.getCollections();</span><br><span class="line">Document document = contentHandle.get();</span><br><span class="line"><span class="comment">//7. 完成数据库后，通过调用DatabaseClient对象的release() 方法释放连接资源。</span></span><br><span class="line">client.release();</span><br></pre></td></tr></table></figure>
+<p>默认情况下，DocumentManager读取和写入所有类别的元数据。要读取或写入元数据类别的子集，请DocumentManager调用进行配置setMetadataCategories()。例如，要仅检索集合元数据，请在调用DocumentManager.read或之前进行以下调用DocumentManager.readMetadata：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docMgr.setMetadataCategories(DocumentManager.Metadata.COLLECTIONS);</span><br></pre></td></tr></table></figure>
+<h4 id="修补文档和元数据的基本步骤"><a href="#修补文档和元数据的基本步骤" class="headerlink" title="修补文档和元数据的基本步骤"></a>修补文档和元数据的基本步骤</h4><blockquote>
+<p>对于JSON和XML文档，您可以使用com.marklogic.client.document.DocumentPatchBuilder来修补仅内容，内容加元数据或仅元数据。对于所有文档类型，您只能使用com.marklogic.client.document.DocumentMetadataPatchBuilder来修补元数据。一个DocumentPatchBuilder也是DocumentMetadataPatchBuilder。使用DocumentManager诸如JSONDocumentManager或的子类GenericDocumentManager来创建补丁构建器。</p>
+</blockquote>
+<p>当您在同一补丁中组合内容和元数据更新时，补丁格式（XML或JSON）必须与补丁文档的内容类型匹配。</p>
+<p>请遵循以下过程来使用构建器来创建补丁并将其应用于XML或JSON文档的内容，或应用于任何类型的文档的元数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 连接到数据库，并将连接存储在一个com.marklogic.client.DatabaseClient对象中。</span></span><br><span class="line">DatabaseClient client = DatabaseClientFactory.newClient(</span><br><span class="line">    host, port, <span class="keyword">new</span> DigestAuthContext(username, password));</span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 使用DatabaseClient对象为com.marklogic.client.document.DocumentManager要访问的文档内容（XML，JSON，二进制或文本）创建适当子类的对象。在此示例代码中，一个XMLDocumentManager。</span></span><br><span class="line">XMLDocumentManager docMgr = client.newXMLDocumentManager();</span><br><span class="line"></span><br><span class="line"><span class="comment">//3. 使用文档管理器创建文档补丁构建器或元数据补丁构建器。</span></span><br><span class="line">DocumentPatchBuilder builder = docMgr.newPatchBuilder();</span><br><span class="line"></span><br><span class="line"><span class="comment">//4. 调用补丁程序构建器方法来定义补丁程序的插入，替换，替换插入和删除操作。</span></span><br><span class="line">builder.insertFragment(<span class="string">"/data"</span>, Position.LAST_CHILD,</span><br><span class="line">    <span class="string">"&lt;child&gt;the last one&lt;/child&gt;"</span>);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//5. 使用创建与补丁程序关联的句柄DocumentPatchBuilder.build()。</span></span><br><span class="line">DocumentPatchHandle handle = builder.build();</span><br><span class="line"></span><br><span class="line"><span class="comment">//6. 通过在上调用带有文档URI和句柄参数的patch()方法来应用补丁DocumentManager。</span></span><br><span class="line">docMgr.patch(docId, handle);</span><br><span class="line"></span><br><span class="line"><span class="comment">//7. 完成数据库后，通过调用DatabaseClient对象的release() 方法释放连接资源。</span></span><br><span class="line">client.release();</span><br></pre></td></tr></table></figure>
+<h4 id="替换JSON文档的一部分"><a href="#替换JSON文档的一部分" class="headerlink" title="替换JSON文档的一部分"></a>替换JSON文档的一部分</h4><p>应用这些更改的原始补丁如下所示。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#123;</span> <span class="string">"patch"</span><span class="string">:</span> <span class="string">[</span></span><br><span class="line">    <span class="string">&#123;</span> <span class="string">"replace"</span><span class="string">:</span> <span class="string">&#123;</span></span><br><span class="line"><span class="attr">        "select":</span> <span class="string">"/parent/child1"</span><span class="string">,</span></span><br><span class="line"><span class="attr">        "content":</span> <span class="string">&#123;</span> <span class="string">"REPLACE1"</span><span class="string">:</span> <span class="string">"REPLACED1"</span> <span class="string">&#125;</span></span><br><span class="line">    <span class="string">&#125;&#125;,</span></span><br><span class="line">    <span class="string">&#123;</span> <span class="string">"replace"</span><span class="string">:</span> <span class="string">&#123;</span></span><br><span class="line"><span class="attr">        "select":</span> <span class="string">"/parent/child2"</span><span class="string">,</span></span><br><span class="line"><span class="attr">        "content":</span> <span class="string">"REPLACED2"</span></span><br><span class="line">    <span class="string">&#125;&#125;,</span></span><br><span class="line">    <span class="string">&#123;</span> <span class="string">"replace"</span><span class="string">:</span> <span class="string">&#123;</span></span><br><span class="line"><span class="attr">        "select":</span> <span class="string">"/parent/array-node('child3')"</span><span class="string">,</span></span><br><span class="line"><span class="attr">        "content":</span> <span class="string">[</span> <span class="string">"REPLACED3a"</span><span class="string">,</span> <span class="string">"REPLACED3b"</span> <span class="string">]</span></span><br><span class="line">    <span class="string">&#125;&#125;</span></span><br><span class="line"><span class="string">]&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>以下代码演示了如何使用PatchBuilder接口创建等效的原始补丁。Jackson ObjectMapper用于构造复杂的替换值（对象值child1和的数组值child3）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">JSONDocumentManager jdm = client.newJSONDocumentManager();</span><br><span class="line">DocumentPatchBuilder pb = jdm.newPatchBuilder();</span><br><span class="line">pb.pathLanguage(DocumentPatchBuilder.PathLanguage.XPATH);</span><br><span class="line">ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">pb.replaceFragment(<span class="string">"/parent/child1"</span>, </span><br><span class="line">        mapper.createObjectNode().put(<span class="string">"REPLACE1"</span>, <span class="string">"REPLACED1"</span>));</span><br><span class="line">pb.replaceValue(<span class="string">"child2"</span>, <span class="string">"REPLACED2"</span>);</span><br><span class="line">pb.replaceFragment(<span class="string">"/parent/array-node('child3')"</span>, </span><br><span class="line">        mapper.createArrayNode().add(<span class="string">"REPLACED3a"</span>).add(<span class="string">"REPLACED3b"</span>));</span><br><span class="line">jdm.patch(URI, pb.build());</span><br></pre></td></tr></table></figure>
+<h6 id="更新前后对比"><a href="#更新前后对比" class="headerlink" title="更新前后对比"></a>更新前后对比</h6><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTUxMDQ0MzIyODUucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<h4 id="提取每个匹配文档的一部分"><a href="#提取每个匹配文档的一部分" class="headerlink" title="提取每个匹配文档的一部分"></a>提取每个匹配文档的一部分</h4><p>本示例演示了如何使用extract-document-data查询选项将匹配的文档中选定的数据子集嵌入到搜索结果中。有关将extract-document-data用作多文档读取的一部分的示例，请参阅提取每个匹配文档的一部分。</p>
+<p>将示例文档插入数据库的/ extract /目录中，以使其在示例中易于管理。示例数据包括一个XML文档和一个JSON文档，它们的结构使得可以使用一个XPath表达式来演示如何extract-document-data在两种类型的文档上使用。</p>
+<p>示例文档具有以下内容，其中粗体部分是使用XPath表达式提取的内容/parent/body/target。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">JSON:</span><br><span class="line">&#123;<span class="string">"parent"</span>: &#123;</span><br><span class="line">  <span class="string">"a"</span>: <span class="string">"foo"</span>, </span><br><span class="line">  <span class="string">"body"</span>: &#123; </span><br><span class="line">    <span class="string">"target"</span>: <span class="string">"content1"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"b"</span>: <span class="string">"bar"</span></span><br><span class="line">&#125;&#125;</span><br><span class="line"></span><br><span class="line">XML:</span><br><span class="line"></span><br><span class="line">&lt;parent&gt;</span><br><span class="line">  &lt;a&gt;foo&lt;/a&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;target&gt;content2&lt;/target&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">  &lt;b&gt;bar&lt;/b&gt;</span><br><span class="line">&lt;/parent&gt;</span><br></pre></td></tr></table></figure>
+<p>该示例使用RawCombinedQuery，其中包含directory-query结构化查询和包含该extract-document-data选项的查询选项。该示例根据字符串文字创建组合查询，但是您也可以使用它StructuredQueryBuilder来创建组合查询的查询部分。有关详细信息，请参阅使用StructuredQueryBuilder创建组合查询。</p>
+<p>下面的示例程序将一些文档插入数据库，执行使用extract-document-data查询选项的搜索，然后删除文档。运行这个例子之前，修改的值HOST，PORT，USER，和PASSWORD以匹配您的环境。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.xiaobai.demo.cmt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.w3c.dom.Document;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.document.DocumentWriteSet;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.document.GenericDocumentManager;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.io.*;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.query.DeleteQueryDefinition;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.query.ExtractedItem;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.query.ExtractedResult;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.query.MatchDocumentSummary;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.query.QueryManager;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.query.RawCombinedQueryDefinition;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.DatabaseClientFactory;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.DatabaseClient;</span><br><span class="line"><span class="keyword">import</span> com.marklogic.client.DatabaseClientFactory.DigestAuthContext;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExtractExample</span> </span>&#123;</span><br><span class="line">    <span class="comment">// replace with your MarkLogic Server connection information</span></span><br><span class="line">    <span class="keyword">static</span> String HOST = <span class="string">"localhost"</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> PORT = <span class="number">8000</span>;</span><br><span class="line">    <span class="keyword">static</span> String USER = <span class="string">"admin"</span>;</span><br><span class="line">    <span class="keyword">static</span> String PASSWORD = <span class="string">"111111"</span>;</span><br><span class="line">    <span class="keyword">static</span> DatabaseClient client = DatabaseClientFactory.newClient(</span><br><span class="line">            HOST, PORT,<span class="string">"xiaobai"</span>,</span><br><span class="line">            <span class="keyword">new</span> DigestAuthContext(USER, PASSWORD));</span><br><span class="line">    <span class="keyword">static</span> String DIR = <span class="string">"/extract/"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Insert some example documents in the database.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        StringHandle jsonContent = <span class="keyword">new</span> StringHandle(</span><br><span class="line">                <span class="string">"&#123;\"parent\": &#123;"</span> +</span><br><span class="line">                        <span class="string">"\"a\": \"foo\","</span> +</span><br><span class="line">                        <span class="string">"\"body\": &#123;"</span> +</span><br><span class="line">                        <span class="string">"\"target\": \"content1\""</span> +</span><br><span class="line">                        <span class="string">"&#125;,"</span> +</span><br><span class="line">                        <span class="string">"\"b\": \"bar\""</span> +</span><br><span class="line">                        <span class="string">"&#125;&#125;"</span>).withFormat(Format.JSON);</span><br><span class="line">        StringHandle xmlContent = <span class="keyword">new</span> StringHandle(</span><br><span class="line">                <span class="string">"&lt;parent&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;a&gt;foo&lt;/a&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;body&gt;&lt;target&gt;content2&lt;/target&gt;&lt;/body&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;b&gt;bar&lt;/b&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;/parent&gt;"</span>).withFormat(Format.XML);</span><br><span class="line">        GenericDocumentManager gdm = client.newDocumentManager();</span><br><span class="line"></span><br><span class="line">        DocumentWriteSet batch = gdm.newWriteSet();</span><br><span class="line">        batch.add(DIR + <span class="string">"doc1.json"</span>, jsonContent);</span><br><span class="line">        batch.add(DIR + <span class="string">"doc2.xml"</span>, xmlContent);</span><br><span class="line">        gdm.write(batch);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Perform a search with RawCombinedQueryDefinition that extracts</span></span><br><span class="line">    <span class="comment">// just the "target" element or property of docs in DIR.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">example</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String rawQuery =</span><br><span class="line">                <span class="string">"&lt;search xmlns=\"http://marklogic.com/appservices/search\"&gt;"</span> +</span><br><span class="line">                        <span class="string">"  &lt;query&gt;"</span> +</span><br><span class="line">                        <span class="string">"    &lt;directory-query&gt;&lt;uri&gt;"</span> + DIR + <span class="string">"&lt;/uri&gt;&lt;/directory-query&gt;"</span> +</span><br><span class="line">                        <span class="string">"  &lt;/query&gt;"</span> +</span><br><span class="line">                        <span class="string">"  &lt;options&gt;"</span> +</span><br><span class="line">                        <span class="string">"    &lt;extract-document-data selected=\"include\"&gt;"</span> +</span><br><span class="line">                        <span class="string">"      &lt;extract-path&gt;/parent/body/target&lt;/extract-path&gt;"</span> +</span><br><span class="line">                        <span class="string">"    &lt;/extract-document-data&gt;"</span> +</span><br><span class="line">                        <span class="string">"  &lt;/options&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;/search&gt;"</span>;</span><br><span class="line">        StringHandle qh =</span><br><span class="line">                <span class="keyword">new</span> StringHandle(rawQuery).withFormat(Format.XML);</span><br><span class="line"></span><br><span class="line">        QueryManager qm = client.newQueryManager();</span><br><span class="line">        RawCombinedQueryDefinition query =</span><br><span class="line">                qm.newRawCombinedQueryDefinition(qh);</span><br><span class="line"></span><br><span class="line">        SearchHandle results = qm.search(query, <span class="keyword">new</span> SearchHandle());</span><br><span class="line"></span><br><span class="line">        System.out.println(</span><br><span class="line">                <span class="string">"Total matches: "</span> + results.getTotalResults());</span><br><span class="line"></span><br><span class="line">        MatchDocumentSummary matches[] = results.getMatchResults();</span><br><span class="line">        <span class="keyword">for</span> (MatchDocumentSummary match : matches) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Extracted from uri: "</span> + match.getUri());</span><br><span class="line">            ExtractedResult extracts = match.getExtracted();</span><br><span class="line">            <span class="keyword">for</span> (ExtractedItem extract: extracts) &#123;</span><br><span class="line">                System.out.println(<span class="string">"  extracted content: "</span> +</span><br><span class="line">                        extract.getAs(String.class));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Delete the documents inserted by setup.</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">teardown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        QueryManager qm = client.newQueryManager();</span><br><span class="line">        DeleteQueryDefinition byDir = qm.newDeleteDefinition();</span><br><span class="line">        byDir.setDirectory(DIR);</span><br><span class="line">        qm.delete(byDir);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        setup();</span><br><span class="line">        example();</span><br><span class="line">        teardown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTUxNTEwMTYxNzkucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"><br>通过更改selected属性的值extract-document-data，可以进一步控制每个中返回多少匹配内容。例如，如果您修改原始示例以将selected的值设置为“include-with-ancestors”，则输出类似于以下内容：<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTUxNTE4NTI3OTEucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>更多方法API请参考官方<a href="https://docs.marklogic.com/guide/java/document-operations#id_33048" target="_blank" rel="noopener">Java应用程序开发人员指南—第2章
+</a></p>
+</blockquote>
+<hr>
+<h1 id="更多技术分享欢迎登录我的博客"><a href="#更多技术分享欢迎登录我的博客" class="headerlink" title="更多技术分享欢迎登录我的博客"></a>更多技术分享欢迎登录我的博客</h1><p><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></p>
+<ul>
+<li>本笔记不允许任何个人和组织转载</li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

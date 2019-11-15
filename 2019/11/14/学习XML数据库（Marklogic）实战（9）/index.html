@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>“学习XML数据库（Marklogic）实战（9）” - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议。本文链接：http://www.blbk.info
+学习XML数据库（Marklogic）实战（9）第一个Marklogic应,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">“学习XML数据库（Marklogic）实战（9）”</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">“学习XML数据库（Marklogic）实战（9）”</h1>
+        <div class="stuff">
+            <span>十一月 14, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Marklogic/" rel="tag">Marklogic</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>版权声明：本文为博主原创文章，遵循 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC 4.0 BY-SA</a> 版权协议。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
+<h1 id="学习XML数据库（Marklogic）实战（9）"><a href="#学习XML数据库（Marklogic）实战（9）" class="headerlink" title="学习XML数据库（Marklogic）实战（9）"></a>学习XML数据库（Marklogic）实战（9）</h1><h2 id="第一个Marklogic应用（中）"><a href="#第一个Marklogic应用（中）" class="headerlink" title="第一个Marklogic应用（中）"></a>第一个Marklogic应用（中）</h2><blockquote>
+<p>摘要： 通过前面一节的介绍，你是否已经可以感受到Marklogic的强大，前端UI 工程师设计好页面，我们只需要一个XQuery文件就可以做到保存到数据库操作，本节继续通过实例来讲解Marklogic 8.</p>
+</blockquote>
+<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><p>后台管理员一般需要知道现存书籍的概况，因此还需要一个查询接口用于得到所有的图书信息，还需要一个界面展示这些信息。<br>首先需要一个service 来从数据库中获取书籍信息 findbook.xqy</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line"><span class="keyword">declare</span> namespace html = <span class="string">"http://www.w3.org/1999/xhtml"</span>;</span><br><span class="line"></span><br><span class="line">let $dir := "/book/"</span><br><span class="line">let $query := cts:and-query(cts:directory-query($dir,"infinity"))</span><br><span class="line">let $results := cts:search(fn:doc(),$query)</span><br><span class="line">let $books := element books &#123;for $book in $results/book return </span><br><span class="line">    element book &#123;</span><br><span class="line">      attribute id &#123;$book/@id&#125;,</span><br><span class="line">      element title &#123;$book/title/string()&#125;,</span><br><span class="line">      element author &#123;$book/author/string()&#125;,</span><br><span class="line">      element page &#123;$book/pages/string()&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">return $books</span><br></pre></td></tr></table></figure>
+<p>此时，我们已经得到了所有书籍的数据，但是为了页面方便使用这些数据， 我们可以将这个XML输出转换为JSON格式。<br>使用==json:transform-to-json== 函数可以方便地做json转换，选择custom做自定义转化，还需要将输出结果中的array告诉转换方法，不然在转换数组元素时，只能得到第一组数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let $config := json:config("custom") ,</span><br><span class="line">        $_ := map:put( $config, "array-element-names", "book")</span><br><span class="line">return </span><br><span class="line">      json:transform-to-json( $books, $config )</span><br></pre></td></tr></table></figure>
+<p>为了方便以后使用，还可以将转化功能封装成函数，最终修改后的 findbook.xqy</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">xquery version "1.0-ml";</span><br><span class="line"><span class="keyword">declare</span> namespace html = <span class="string">"http://www.w3.org/1999/xhtml"</span>;</span><br><span class="line">import module namespace json="http://marklogic.com/xdmp/json"</span><br><span class="line"> at "/MarkLogic/json/json.xqy";</span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">function</span> <span class="keyword">local</span>:<span class="keyword">xml</span>-<span class="keyword">to</span>-<span class="keyword">json</span>($node <span class="keyword">as</span> node(),$<span class="built_in">array</span>-<span class="keyword">name</span> <span class="keyword">as</span> xs:<span class="keyword">string</span>*)&#123;</span><br><span class="line">    let $config := <span class="keyword">json</span>:config(<span class="string">"custom"</span>) ,</span><br><span class="line">        $_ := <span class="keyword">map</span>:put( $config, <span class="string">"array-element-names"</span>, $<span class="built_in">array</span>-<span class="keyword">name</span>)</span><br><span class="line">    <span class="keyword">return</span> </span><br><span class="line">      <span class="keyword">json</span>:transform-<span class="keyword">to</span>-<span class="keyword">json</span>( $node , $config )</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let $dir := "/book/"</span><br><span class="line">let $query := cts:and-query(cts:directory-query($dir,"infinity"))</span><br><span class="line">let $results := cts:search(fn:doc(),$query)</span><br><span class="line">let $books := element books &#123;for $book in $results/book return </span><br><span class="line">                            element book &#123;</span><br><span class="line">                              attribute id &#123;$book/@id&#125;,</span><br><span class="line">                              element title &#123;$book/title/string()&#125;,</span><br><span class="line">                              element author &#123;$book/author/string()&#125;,</span><br><span class="line">                              element page &#123;$book/pages/string()&#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                          &#125;</span><br><span class="line">return local:xml-to-json($books,("book"))</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，json并不是Marklogic build-in 命名空间，使用时需要手动引入。定义$array-name 为 xs:string*类型，因为这一参数有可能传人多个。<br>展示书籍信息的界面很简单，只需要列出刚查询到的数据即可：<br>首先有一个展示基础界面：showbooks.html</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">&lt;title&gt;Books Information&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2 align=<span class="string">"center"</span>&gt;books Information&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;table align="center" id="details"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;tr&gt;</span></span><br><span class="line"><span class="regexp">        &lt;th&gt;I D&lt;/</span>th&gt;</span><br><span class="line">        &lt;th&gt;标题&lt;<span class="regexp">/th&gt;</span></span><br><span class="line"><span class="regexp">        &lt;th&gt;作者&lt;/</span>th&gt;</span><br><span class="line">        &lt;th&gt;页数&lt;<span class="regexp">/th&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>tr&gt;</span><br><span class="line">&lt;<span class="regexp">/table&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"jquery-1.7.2.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"showbook.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我把展示信息的逻辑代码放到了js文件中 : showbook.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"document"</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        url:<span class="string">"findbook.xqy"</span>,</span><br><span class="line">        type:<span class="string">"get"</span>,</span><br><span class="line">        dataType:<span class="string">"json"</span>,</span><br><span class="line">        success:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">            $.each(data.books.book, <span class="function"><span class="keyword">function</span>(<span class="params">commentIndex, comment</span>)</span>&#123;</span><br><span class="line">                $(<span class="string">"#details"</span>).append(</span><br><span class="line">                    <span class="string">"&lt;tr&gt;"</span> +</span><br><span class="line">                    <span class="string">"&lt;td&gt; &lt;input type='text' value="</span>+comment.id+<span class="string">"&gt;&lt;/td&gt;"</span> +</span><br><span class="line">                    <span class="string">"&lt;td&gt; &lt;input type='text' value="</span>+comment.title+<span class="string">"&gt;&lt;/td&gt;"</span> +</span><br><span class="line">                    <span class="string">"&lt;td&gt; &lt;input type='text' value="</span>+comment.author+<span class="string">"&gt;&lt;/td&gt;"</span> +</span><br><span class="line">                    <span class="string">"&lt;td&gt; &lt;input type='text' value="</span>+comment.page+<span class="string">"&gt;&lt;/td&gt;"</span> +</span><br><span class="line">                    <span class="string">"&lt;/td&gt;"</span></span><br><span class="line">                );</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这里使用jquery简化代码，使用ajax请求来获取数据，使用的url就是之前xquery方法。</p>
+<h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><p>将findbook.xqy文件放到之前创建的workML目录下。<br>将showbook.html文件拷贝到workML目录下。<br>将showbook.js文件拷贝到workML目录下。<br>将jquery文件拷贝到workML目录下。<br>要确保这些文件在同一目录下。<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTMwOTU2MDAyNzkucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"><br>载浏览中访问<a href="http://localhost:8899/showbook.html" target="_blank" rel="noopener">http://localhost:8899/showbook.html</a>，可以看到已经展示出了书籍信息。<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTMxMDA0NTAzNzMucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>通过两个例子的介绍，已经可以讲述清楚Marklogic在项目开发过程中，如果施展其能力。常用的方法莫过于增查改删，其中，最常使用的就是查询方法了，而Marklogic在这方面有着独特的优势。上面的例子中，查询方法并不复杂，结果类型可以方便转换。只要约定好数据结构，前后台开发可以完全分离。可以方便地定义函数，并调用。当然，这里我们没有考虑数据容量大小，如果有很多数据时，可以考虑分段查询，没有加入过滤条件，我们可以查询出只符合某些条件的数据，这些功能实现起来都很简单，在之后涉及到优化代码的时候，再举例说明。</p>
+<hr>
+<h1 id="更多技术分享欢迎登录我的博客"><a href="#更多技术分享欢迎登录我的博客" class="headerlink" title="更多技术分享欢迎登录我的博客"></a>更多技术分享欢迎登录我的博客</h1><p><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></p>
+<ul>
+<li>本笔记不允许任何个人和组织转载</li>
+<li>以上文章整理于 <a href="https://blog.csdn.net/jiangchao858/article/details/50243273" target="_blank" rel="noopener">CSDN-cj96248</a></li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

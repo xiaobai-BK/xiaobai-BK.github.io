@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>“学习XML数据库（Marklogic）实战（8）” - Hexo</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议。本文链接：http://www.blbk.info
+学习XML数据库（Marklogic）实战（8）第一个Marklogic应,"> 
+    <meta name="author" content="John Doe"> 
+    <link rel="alternative" href="atom.xml" title="Hexo" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Hexo</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">“学习XML数据库（Marklogic）实战（8）”</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">“学习XML数据库（Marklogic）实战（8）”</h1>
+        <div class="stuff">
+            <span>十一月 14, 2019</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Marklogic/" rel="tag">Marklogic</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>版权声明：本文为博主原创文章，遵循 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC 4.0 BY-SA</a> 版权协议。<br>本文链接：<a href="http://www.blbk.info" target="_blank" rel="noopener">http://www.blbk.info</a></p>
+<h1 id="学习XML数据库（Marklogic）实战（8）"><a href="#学习XML数据库（Marklogic）实战（8）" class="headerlink" title="学习XML数据库（Marklogic）实战（8）"></a>学习XML数据库（Marklogic）实战（8）</h1><h2 id="第一个Marklogic应用（上）"><a href="#第一个Marklogic应用（上）" class="headerlink" title="第一个Marklogic应用（上）"></a>第一个Marklogic应用（上）</h2><blockquote>
+<p>摘要： 通过前面几节的介绍，你是否已经隐约感受到了Marklogic的强大，这一节开始，我将逐步讲解Marklogic在项目中是如何体现其价值的。</p>
+</blockquote>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>现在的项目用MYSQL，然后我是把XML字段解析在数据库对应字段，但是难返回成XML或者后端自定义加字段生成XML，基于注解解析一套或许可以，但是成本略高，所以考虑XML数据库Marklogic。</p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><ol>
+<li>请确保你已经安装好了Marklogic. 我的版本是Marklogic 8.0-4</li>
+<li>链接到http:localhost:8000/console.</li>
+<li>已经创建好了可用的数据库. 我的数据库名为xiaobai<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4></li>
+<li>首先有一个保存图书的界面：savebook.html<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxNjQwMzM4OTIucG5n?x-oss-process=image/format,png" alt="save book"></li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">&lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8" /&gt;</span><br><span class="line">&lt;title&gt;Save Book&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;div align="center"&gt;</span><br><span class="line">        &lt;form action="save.xqy"&gt;</span><br><span class="line">            &lt;h3 align="center"&gt;保存书籍&lt;/h3&gt;</span><br><span class="line">            I D：&lt;input type="text" name="id"&gt;&lt;br&gt;</span><br><span class="line">            目录：&lt;input type="text" name="category"&gt;&lt;br&gt;</span><br><span class="line">            标题：&lt;input type="text" name="title"&gt;&lt;br&gt;</span><br><span class="line">            作者：&lt;input type="text" name="author"&gt;&lt;br&gt;</span><br><span class="line">            页数：&lt;input type="text" name="pages"&gt;&lt;br&gt;</span><br><span class="line">            &lt;input type="submit" value="提交" style="width:50px"&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>注意到form请求提交到了 save.xqy</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">xquery</span> <span class="selector-tag">version</span> "1<span class="selector-class">.0-ml</span>";</span><br><span class="line">declare namespace html = "http://www.w3.org/1999/xhtml";</span><br><span class="line"></span><br><span class="line">let $id := xdmp:get-request-field("id")</span><br><span class="line">let $category := xdmp:get-request-field("category")</span><br><span class="line">let $title := xdmp:get-request-field("title")</span><br><span class="line">let $author := xdmp:get-request-field("author")</span><br><span class="line">let $pages := xdmp:get-request-field("pages")</span><br><span class="line"></span><br><span class="line">let $book := element book &#123;</span><br><span class="line">                attribute id &#123;$id&#125;,</span><br><span class="line">                attribute category &#123;$category&#125;,</span><br><span class="line">                element title &#123;$title&#125;,</span><br><span class="line">                element author &#123;$author&#125;,</span><br><span class="line">                element pages &#123;$pages&#125;</span><br><span class="line">              &#125;</span><br><span class="line">return xdmp:document-insert(concat("/book/",$id,".xml"),$book)</span><br></pre></td></tr></table></figure>
+<h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><ol>
+<li>先将编写好的代码，放到保存在本地，我在D盘下创建一个Marklogic工作空间。<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxNzA3Mjg4MjUucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></li>
+<li>建立一个HTTP服务<ol>
+<li>陆到AdminPage，我的服务在本地 <a href="http://localhost:8001/" target="_blank" rel="noopener">http://localhost:8001/</a></li>
+<li>Configure – &gt; Default –&gt; App Servers – &gt; Create HTTP<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTIxNjQzMjk3NzcucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></li>
+<li>在http server 面板填入相关信息：server name 取bookstore, root路径填刚才保存代码的路径，port端口号填一个数字，尽量填大一点的数字，我填8899，数据库选xiaobai。<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTMwOTEwMTY5NDYucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"><ol start="4">
+<li>访问<a href="http://localhost:8899/savebook.html，来到保存图书的页面，填入一组图书信息，点击提交。" target="_blank" rel="noopener">http://localhost:8899/savebook.html，来到保存图书的页面，填入一组图书信息，点击提交。</a><br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTMwOTE3MjQ5NzcucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></li>
+</ol>
+</li>
+<li>在qconsole页面，查看一下这条记录。<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy1ibG9nLmNzZG5pbWcuY24vMjAxOTExMTMwOTIzNDkxMzgucG5n?x-oss-process=image/format,png" alt="在这里插入图片描述"></li>
+</ol>
+</li>
+</ol>
+<hr>
+<h1 id="更多技术分享欢迎登录我的博客"><a href="#更多技术分享欢迎登录我的博客" class="headerlink" title="更多技术分享欢迎登录我的博客"></a>更多技术分享欢迎登录我的博客</h1><p><a href="http://www.blbk.com" target="_blank" rel="noopener">http://www.blbk.com</a></p>
+<ul>
+<li>本笔记不允许任何个人和组织转载</li>
+<li>以上文章整理于 <a href="https://blog.csdn.net/jiangchao858/article/details/50243273" target="_blank" rel="noopener">CSDNcj96248</a></li>
+</ul>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                        
+                    
+                        
+                            <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
